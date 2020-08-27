@@ -1,0 +1,127 @@
+# Lines starting with "\n"(newline), or # are stripped from this file upon load.
+
+# These are the epitaphs that are generated on character death.
+# The first set are the one liners, the basic epitaphs.
+# The first line of this file needs to contain the number of these
+# basic epitaphs.
+
+# The rest of the epitaphs, the complex ones are used thusly.
+# the # sign is used as a seperator.
+# The first value is the action and preposition usually
+# The rest of the values (ie 2nd and above. or rather index 1)
+# are chosen at random to complete the first value.
+
+
+15
+died
+lost
+vapourized
+shattered
+corrupted
+liquified
+training accident
+explosive decompression
+boiled alive
+corrupted Gene-Seed
+lost his mind
+held the door
+his armour betrayed him
+shit himself to death
+zigged when he should have zagged
+
+infected with#Fredorian Degloving Disease#Agent Magenta#Bleeding Maw#Bonewrack
+infected with#Brittle Coma#Chortling Murrain#Chronopox#Churning Lung
+infected with#Destroyer Plague#Endless Suppuration#Everseep#Eyerot
+infected with#Ferric Blight#Grey Flux#Gurgling Doom#Morlochs Disease
+infected with#Mouldering#Nurgles Rot#Obliterator Virus#Oozing Pox#Plague of Despair
+infected with#Red Flux#Slitherpox#Tears of the Dragon#Tsepsis
+infected with#Daemon Plague#Uhlrens Pox#Virus Bomb#Witch-Curse
+
+died defending against#a tyranid invasion#an ork waagh#an eldar offensive#a tau incursion
+lost fighting#orks#eldari#chaos cultists#demons#chaos marines#grots
+killed fighting#orks#eldari#chaos cultists#demons#chaos marines#grots
+crushed beneath#a falling Eldari Craftworld#a heretic Leman Russ#a demon prince#a falling structure#a deck compaction
+head explosion due to#failed save#explosion
+
+fighting renegades in the#Eastern Periphery#Segmentum Obscuris#Segmentum Pacifica#Segmentum Tempestus
+fighting renegades in the#Segmentum Ultima#Segmentum Solar#Emperium Maledictum
+suicide mission resulting in#an enemy ship destruction#mission failure
+killed defending#a capital city from Xeno invasion#a battle barge#a home planet
+permanantly ceded to#the Death Watch#a new founding
+pulled inside out during#a spacehulk expedition#a warp excursion#a webway incursion#a psyker invasion
+died fighting cultists aboard#a heretic vessal#a chapter vessel#a space hulk
+
+electrocuted by#ork mechboys#conduit panel#energy discharge
+possessed by#the warp#an unending rage#a chaos demon
+infected by#bubbling fungal rot#heretical thoughts#Gene-Stealer DNA
+shredded by#a tyranid ripper swarm#a necron scarab swarm#an industrial machine#krak grenade failure
+vapourized by#dark archeotek weapons#by an atomic blast
+incinerated by#Ork Burna Boys#heavy flamer explosion#melta bomb blast
+evicerated by#Eldar Raiders#ork commandos#killa kans
+tortured by#Chaos Marines#Eldari Raiders#the Inquisition
+exploded by#Necrons#krak grenades#ship disintegration
+flattened by#a gorkanaut#a morkanaut#a damaged titan#building destruction
+consumed by#an unending rage#a hive tyrant#a sinkhole#worms
+mindwiped by#rogue psyker#an astra telipathica agent#a wierdboy#[REDACTED}
+skinned alive by#a dark mechanicus coven#cannibals
+cut to pieces by#unknown horror#sudden chainsword malfunction#killa kans#demons
+atomized by#enemy macro guns#massive sub-nuclear explosion#ship destruction
+struck by#Mega-Lightning#speeding ork wagons#a minor bout of heresy
+devoured by#Mega-Fauna#tyranids#a howling grot pack#parasites#a nanite swarm
+body checked into wall by#a knight#a pack of wild ogryns
+burned by#the Inquisition#fire
+death by#stikbombs#hole in the head
+zapped by#rogue Man of Iron#strange xeno technology#plasma conduit
+impregnated by#Xeno Arachnids#warp ghosts
+decapitated by#orks#eldari scouting party#gene-stealers
+crucified by#dark eldar#an unenlightened civilization
+cleansed by#the Eclisiarchy#a tyranid invasion#an eldari holy war
+mutated by#the warp#sudden catastrophic gene-seed failure
+unzipped by#biological weapons#black hole immersion
+killed by#future self?#a jealous lover#his own curiosity#a Necron disintigration beam
+impaled by#Harlequins in the webway#deck wreckage#a falling stalagtite#feral Koalas
+frozen by#a cryo-ray#the chill of deep space
+riddled by#Tau gunfire#shrapnel
+pummeled by#a tau commander#an ork warboss#a dreadnought
+murdered by#a jealous battlebrother
+hit by#a stray artillery shell#a building
+drawn and quartered by#a mideval aristocracy#savages
+ripped asunder by#Gene-Stealers#the forces of chaos#a gravity anomoly#a stompa
+killed in combat by#Necron Lord#Ork Warboss#Hive Tyrant#Demon Prince#Tau Commander#Gene-Stealer Patriarch
+
+lost in#a deck decrompression event#a ship explosion
+lost in#a drop pod reentry failure#a thunderhawk crash
+lost in#an untimely extraction mission#Teleporter transmission failure
+lost in#a rhino explosion#predator explosion#a landraider explosion
+lost in#an earthquake#a cyclonic storm#tsunami wave
+lost in#a close-range supernova explosion#a planetary explosion
+drowned in#an acid vat#a sea of mercury#a vat of fenrisian ale
+died in#a nuclear detonation#an ork invasion#the last stand
+shredded in#motorcycle accident#a warp explosion
+
+killed in invasion#of#an eldar craftworld#ork held territory#a tau colony world
+soulburned in#warp excursion#a space hulk
+crushed in#gravity well#an industrial machine
+smashed in#highspeed accident
+
+[REDACTED] in the head by#[REDACTED]#boltergun misfire#renegade apothecary
+[REDACTED] in the stomach by#[REDACTED]#xeno weapons#blood worshipers
+[REDACTED] in the testicles by#[REDACTED]
+
+shot to death in#the webway#an ork gunbattle#chaos cultists
+ripped to shreds liberating#a lost human colony#a heretic planet
+ripped to shreds by#a chaos marine#a plague marine#a chaos apothecary
+clawed to death by#a pack of gretchen#a pack of demons#bony fingers of hungry refugees
+torn to pieces defending#a ship in a gellar field failure#a gene-seed repository
+
+sucked into#a scrapjet engine#the void of space#a warp anomoly
+dropped into#a black hole#a dark pit#a razorwing nest
+fused into#a spacehulk bulkhead#his own armor#the ground
+
+fell from#a great height#orbit#the upper atmosphere#the top of a building
+melted from#tyranid arterial acid spray#an atomic blast#melta-gun accident
+died from#sudden catastrophic Gene-Seed rejection#radiation posioning
+died of#broken hearts#a parasitic infection
+starved on#a barren world.#forgotten prison planet
+entombed on#a necron tombworld#a savage planet
+riddled with#disease#autobullets#holes

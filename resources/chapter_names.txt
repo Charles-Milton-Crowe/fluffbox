@@ -1,0 +1,123 @@
+# Lines starting with "\n"(newline), or # are stripped from this file upon load.
+
+# This file contains potential names for space marine chapters
+# The first set are ones chosen by myself. Some are original some are not.
+# The second set are names taken from actual WW1(2) combat unit nicknames commonwealth units.
+
+Screaming Eagles
+Ghost Bears
+Mirage Marines
+Orange Ogres
+Seraphim
+Wardogs
+Fire Newts
+Iron Mongers
+Star Hawks
+Badgers
+Whirling Dervishes
+Iron Giants
+Penitent Ones
+Wild Stallions
+Meteor Marines
+Machine Marines
+Golden Horde
+Pitfighters
+Anacondas
+Bone Crushers
+Mega Marines
+Rhinos
+Burning Ones
+Terminators
+Fallen Fate
+Striking Talons
+Deliverers of Redemption
+Xenonauts
+Ragged Band
+Lions
+Skinless
+Ravagers
+Knights of Valor
+Kraken
+
+Agile and Bolton Wanderers
+Angle-irons
+Bangalore Gallopers
+Beavers
+Bermuda Exiles
+Biscuit Boys
+Blarney's Bloodhounds
+Bleeders
+Botherers
+Brave Boys of Berk
+Cat and Cabbage
+Centipedes
+Cheesemongers
+Cloudpunchers
+Cockney Jocks
+Coldstreamers
+Corned Beef Highlanders
+Daily Advertisers
+Dandies
+Desert Rats
+Devils Royal
+Donkey Whallopers
+Duke of Boots
+Dumpies
+Elegant Extracts
+Evergreens
+Ever-Sworded
+Excellers
+Faithful Durhams
+First and the Last
+Flying Bricklayers
+Suffering Highlanders
+Gallants
+Galloping Gunners
+Gay Gordons
+Gentleman Dragoons
+Globe Rangers
+Glorious Glosters
+Grasshoppers
+Gurkhas
+Halls and Balls
+Havercake Lads
+Holy Boys
+Illustrious Garrison
+Immortals
+Jacks
+Jaegers
+Emperors Own
+Lillywhites
+Measurers
+Moonrakers
+Mudlarks
+Nut-Crackers
+Bendovers
+Black Cuffs
+Bucks
+Canaries
+Stubborns
+Paget's Irregular
+Peacemakers
+Piccadilly Butchers
+Pigs
+Poachers
+Pompadours
+Pump and Tortoise
+Emperors Last Resort
+Rats After Mouldy Cheese
+Reckoners
+Reckless Chaps
+Rollickers
+Imperial Goats
+Sandbags
+Shiners
+Slop Jockeys
+Splashers
+Steelbacks
+Surprisers
+Tin Bellies
+Twin Roses
+Whisky Blenders
+White Stars
+Wonkey Donkeys
