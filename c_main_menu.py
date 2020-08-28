@@ -77,7 +77,7 @@ def print_F5Menu(screen, roster_choice):
 
     return screen, roster_choice
 
-def print_control_menu(screen):
+def print_control_menu(screen, Menu_Info):
     """ This displays the top ticker. currently used to display control options"""
 
     menu = ["[F3]-Advance,",
@@ -90,6 +90,8 @@ def print_control_menu(screen):
     
     for item in menu:
         full_menu += item
+
+    full_menu += "AR={}({},{})".format(Menu_Info.active_roster, Menu_Info.selection, Menu_Info.mod)
         
     screen.attron(curses.color_pair(1))
     screen.addstr(0, 0, full_menu)
@@ -154,7 +156,7 @@ def print_screen(screen, chapter, Menu_Info, Panel2_Mode):
     # Displays the entire screen. Ties in the Top and Bottom tickers with the display screen.
 
     screen.clear()
-    screen = print_control_menu(screen)
+    screen = print_control_menu(screen, Menu_Info)
 
     if Panel2_Mode == 1:
         if Menu_Info.active_roster == -1:
