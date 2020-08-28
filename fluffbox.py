@@ -50,18 +50,13 @@ with open("records/Tournament_of_Blades.txt", 'w', encoding="utf-8") as f:
 """
 
 Most Wanted Problem
--------------------- 
-1) Pressing enter to get transcript fails to return the correct transcript
-    when using the Honour Roll and having scrolled down past the first members
-    of the list.
---------------------
-    
-3) Transcripts that mention when an individual is promoted sometimes doesnt work.
+--------------------   
+1) Transcripts that mention when an individual is promoted sometimes doesnt work.
     (e.g. Promoted to Chapter Master. <- these are in cls_chapter.kill_marine)
-     
-4) Program Explodes when the window is resized.
-5) Dreads have never shown in the chapter roster cause im a lazy piece of shit.
-6) Transcripts and Badges need variation and WORK.
+--------------------     
+2) Program Explodes when the window is resized.
+3) Dreads have never shown in the chapter roster cause im a lazy piece of shit.
+4) Transcripts and Badges need variation and WORK.
 
 
 BACK-BURNER WISHLIST SHIT

@@ -170,7 +170,7 @@ def print_screen(screen, chapter, Menu_Info, Panel2_Mode):
 
     elif Panel2_Mode == 2:
         if Menu_Info.active_roster == -1:
-            screen = print_transcript(screen, chapter.Honour.roll[Menu_Info.selection])
+            screen = print_transcript(screen, chapter.Honour.roll[Menu_Info.selection + Menu_Info.mod])
 
         elif Menu_Info.active_roster <= 6:
             screen = print_transcript(screen, chapter.Roster[Menu_Info.active_roster][Menu_Info.selection+ Menu_Info.mod])
