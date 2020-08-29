@@ -50,8 +50,6 @@ with open("records/Tournament_of_Blades.txt", 'w', encoding="utf-8") as f:
 """
 
 Most Wanted Problem
-0) Pressing [Down] in company view [F5->F4] throws and error. This is because the code
-    is referencing the Roster[active] which is 11-20 which dont exist.
 --------------------   
 1) Transcripts that mention when an individual is promoted sometimes doesnt work.
     (e.g. Promoted to Chapter Master. <- these are in cls_chapter.kill_marine)
