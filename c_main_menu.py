@@ -235,17 +235,19 @@ def graphics(screen, chapter):
 
         ################################################################
 
-        elif key == curses.KEY_UP and Menu_Info.selection > 0:
-            if Menu_Info.selection < 4 and Menu_Info.mod > 0:
-                Menu_Info.mod -= 1
-            else:
-                Menu_Info.selection -= 1
+        elif key == curses.KEY_UP:
+            if Menu_Info.selection > 0:
+                if Menu_Info.selection < 4 and Menu_Info.mod > 0:
+                    Menu_Info.mod -= 1
+                else:
+                    Menu_Info.selection -= 1
 
-        elif key == curses.KEY_DOWN and Menu_Info.selection <= len(chapter.Roster[Menu_Info.active_roster]) - 1:
-            if Menu_Info.selection > Menu_Info.high-4 and Menu_Info.mod<len(chapter.Roster[Menu_Info.active_roster])-h+2 :
-                Menu_Info.mod += 1
-            else:
-                Menu_Info.selection += 1
+        elif key == curses.KEY_DOWN:
+            if Menu_Info.selection <= len(chapter.Roster[Menu_Info.active_roster]) - 1:
+                if Menu_Info.selection > Menu_Info.high-4 and Menu_Info.mod<len(chapter.Roster[Menu_Info.active_roster])-h+2 :
+                    Menu_Info.mod += 1
+                else:
+                    Menu_Info.selection += 1
 
 
 
