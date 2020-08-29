@@ -264,7 +264,7 @@ def graphics(screen, chapter):
 
         # [Up] and [Down] change the currently selected marine in the roster.
         elif key == curses.KEY_UP:
-            if Menu_Info.active_roster <= 6 or (Menu_Info.active_roster>=11 and Menu_Info.active_roster <=20):
+            if Menu_Info.active_roster <= 6 or (Menu_Info.active_roster >= 11 and Menu_Info.active_roster <= 20) or Menu_Info.active_roster == -1:
                 if Menu_Info.selection > 0:
                     if Menu_Info.selection < 4 and Menu_Info.mod > 0:
                         Menu_Info.mod -= 1
@@ -272,14 +272,14 @@ def graphics(screen, chapter):
                         Menu_Info.selection -= 1
 
         elif key == curses.KEY_DOWN:
-            if Menu_Info.active_roster <= 6:
+            if Menu_Info.active_roster <= 6 or Menu_Info.active_roster == -1:
                 if Menu_Info.selection <= len(chapter.Roster[Menu_Info.active_roster]) - 1:
                     if Menu_Info.selection > Menu_Info.high-4 and Menu_Info.mod<len(chapter.Roster[Menu_Info.active_roster])-h+2 :
                         Menu_Info.mod += 1
                     else:
                         Menu_Info.selection += 1
 
-            elif Menu_Info.active_roster>=11 and Menu_Info.active_roster <=20:
+            elif Menu_Info.active_roster >= 11 and Menu_Info.active_roster <= 20:
                 if Menu_Info.selection <= len(chapter.Roster[9]) - 1:
                     if Menu_Info.selection > Menu_Info.high-4 and Menu_Info.mod<len(chapter.Roster[9])-h+2 :
                         Menu_Info.mod += 1

@@ -178,7 +178,7 @@ class cls_chapter:
 		""" Rosters[0-6](All) are iterated through.
 				Second we iterate through each individual Roster[0-6][x]
 				
-				If (KIA is set to 3) and (Roster[1](Dreads) is less than the chapter cap(20))
+				If (KIA is set to 3) and (Roster[1](Dreads) is less than the chapter cap(24))
 					and the marine is not a dread already.
 				Then make a copy of that marine in the dread roster.
 					 Kill the original marine.
@@ -257,13 +257,9 @@ class cls_chapter:
 		self.Dead_Count += 1
 		self.Butchers_Bill.append(self.Roster[R][Index])
 
-		if Index <= 10:
-			# There is a bug where living dreadnought(only?) are occasionally
-			# 	making it to the honour roll. the particulars escape me.
-			# 	This func has a check at the start for dead/living marines.
-			# 	this next func called is only called once, AND itself has
-			# 	checks to prevent this shit. -This might be old since the curses update
-
+		if (Index == 0) or \
+			(Index <= 33 and len(self.Roster[R][Index].badges.badges) > 1) or \
+			(Index <= 233 and len(self.Roster[R][Index].badges.badges) > 2):
 			self.Add_Honoured(self.Roster[R][Index], Index)
 
 		if R == 0:
@@ -343,7 +339,7 @@ class cls_chapter:
 				entry.badges.add_badge("B", "Bolter Discipline", "Red")
 
 		# This is the award for Valour. This is given out on a 5% chance basis.
-		for entry in self.Roster[0]:
+		for entry in (self.Roster[0]):
 			if rand(1, 20) == 1:
 				entry.transcript.append("{}: Medal Awarded for Valour.".format(self.year))
 				entry.badges.add_badge("V", "Medal for Valour", "Yellow")
@@ -456,10 +452,6 @@ class cls_chapter:
 		self.Roster[0][Index_List[0]].transcript.pop(-1)
 		self.Roster[0][Index_List[0]].transcript.append("{}: Won the tournament of blades.".format(self.year))
 		self.Tourney_Winners.append("{}|{}, XF={}, XP={}".format(self.year, Contestants[0],Contestants[0].xfactor, Contestants[0].exp ))
-
-
-
-		#self.Tourney_Results = []
 
 	def Get_Company(self, Company):
 		""" Builds a list of the requested Company with all auxilliary specialists (Except Dreads).
