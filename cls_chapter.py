@@ -66,7 +66,7 @@ class cls_chapter:
 
 		self.Age_Chapter()
 
-	def Advance(self, Super):
+	def Advance(self):
 		# This is the heart that runs chapter. Its exists to call the other functions
 		# in turn. Each cycle is a 10 year advancement of the chapter.
 		# 1) The Year from which all time derives is advanced.

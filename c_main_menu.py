@@ -6,6 +6,7 @@ from initialize import Load_Namefile
 
 class menu_info:
     """ Contains a few bits and bobs that need to be passed back and forth."""
+
     def __init__(self, selection, high, mod, active_roster):
 
         # The index of the currently selected marine.
@@ -131,12 +132,15 @@ def print_roster(screen, roll, Menu_Info):
     """ This is the heart of the roster display """
 
     h, w = screen.getmaxyx()
-    # Change this to use Menu_Info.high
+
+    """ Determines how many marines to display. If the list is short then that is how many are displayed.
+        If the list is long. It will fill the screen instead."""
     if len(roll) < h-2:
         High = len(roll)-1
     else:
         High = Menu_Info.high
 
+    # Display in [Selected], [Watchlist], or [Normal] colour modes.
     for x in range(0, High, +1):
         if Menu_Info.selection == x:
             screen.attron(curses.color_pair(2))
@@ -153,11 +157,13 @@ def print_roster(screen, roll, Menu_Info):
     return screen
 
 def print_screen(screen, chapter, Menu_Info, Panel2_Mode):
-    # Displays the entire screen. Ties in the Top and Bottom tickers with the display screen.
+    """ Displays the entire screen. Ties in the Top and Bottom tickers with the display screen. """
 
+    # Clears the screen and Displays the top Ticker.
     screen.clear()
     screen = print_control_menu(screen, Menu_Info)
 
+    # Mode = 1 displays the currently selected roster.
     if Panel2_Mode == 1:
         if Menu_Info.active_roster == -1:
             screen = print_roster(screen, chapter.Honour.roll, Menu_Info)
@@ -174,6 +180,7 @@ def print_screen(screen, chapter, Menu_Info, Panel2_Mode):
 
             screen = print_roster(screen, company, Menu_Info)
 
+    # Mode = 2 displays the currently selected transcript.
     elif Panel2_Mode == 2:
         if Menu_Info.active_roster == -1:
             screen = print_transcript(screen, chapter.Honour.roll[Menu_Info.selection + Menu_Info.mod])
@@ -192,25 +199,30 @@ def print_screen(screen, chapter, Menu_Info, Panel2_Mode):
 
         key = screen.getch()
 
+    # Mode = 3 displays about.txt
     elif Panel2_Mode == 3:
         screen = print_about(screen)
         key = screen.getch()
 
+    # Display the bottom ticker then update the screen.
     screen = print_ticker(screen, chapter)
     screen.refresh()
 
 
 def graphics(screen, chapter):
-    # Initializes the curses graphics and handles the keyboard inputs.
+    """ Initializes the curses graphics and handles the keyboard inputs."""
 
+    h, w = screen.getmaxyx()
     curses.curs_set(0)
     curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_WHITE)
     curses.init_pair(2, curses.COLOR_WHITE, curses.COLOR_BLUE)
     curses.init_pair(3, curses.COLOR_RED, curses.COLOR_BLACK)
 
-    h, w = screen.getmaxyx()
+
+    # Menu_Info is documented in its own class declaration
     Menu_Info = menu_info(0, h-2, 0, 0)
-    
+
+    # These blanks are appended so that Roster[9] can be used for Composite Rosters (Companies)
     chapter.Roster.append([])
     chapter.Roster.append([])
     chapter.Roster.append([])
@@ -220,31 +232,37 @@ def graphics(screen, chapter):
     keepgoing = True
     while keepgoing:
         key = screen.getch()
-        #screen.clear()
 
+        # F3 advances the chapter by 1 tick(10 yrs)
+        # F4 advances the chapter by 100 ticks (1000 yrs)
         if key == curses.KEY_F3:
-            chapter.Advance(False)
+            chapter.Advance()
 
         elif key == curses.KEY_F4:
             for x in range(100):
-                chapter.Advance(True)
+                chapter.Advance()
                 if x % 5 == 0:
                     print_screen(screen, chapter, Menu_Info, 1)
 
+
+        # F5 opens a drop down menu so that which roster is displayed can be changed.
         elif key == curses.KEY_F5:
             screen, Menu_Info.active_roster = print_F5Menu(screen, Menu_Info.active_roster)
             Menu_Info.selection = 0
             Menu_Info.mod = 0
 
-
+        # F7 prints an about.txt to the Roster panel. Currently used to display commands.
         elif key == curses.KEY_F7:
             print_screen(screen, chapter, Menu_Info, 3)
 
+        # F8 Quits the program.
         elif key == curses.KEY_F8:
             keepgoing = False
 
         ################################################################
 
+
+        # [Up] and [Down] change the currently selected marine in the roster.
         elif key == curses.KEY_UP:
             if Menu_Info.active_roster <= 6 or (Menu_Info.active_roster>=11 and Menu_Info.active_roster <=20):
                 if Menu_Info.selection > 0:
@@ -271,10 +289,11 @@ def graphics(screen, chapter):
 
 
 
-
+        # [Enter] displays the transcript of the currently selected marine.
         elif key == curses.KEY_ENTER or key in [10 ,13]:
             print_screen(screen, chapter, Menu_Info, 2)
 
+        # [Space] toggles the watchlist for a given individual. Watched marines display red.
         elif key == ord(' '):
             chapter.Roster[Menu_Info.active_roster][Menu_Info.selection].Toggle_Watchlist()
 
