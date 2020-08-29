@@ -4,7 +4,7 @@ class cls_chapter_settings:
     def __init__(self):
         """ These are the settings for the chapter in 1 place for easy updating.
             I would eventually like these moved to a text file to be loaded upon init.
-            This way they could be edited by a use without editing this."""
+            This way they could be edited by a user without editing this."""
 
         """ Settings for func in chapter.Fate"""
         # This is the 1 in x chance that a given rank has of dying"""
@@ -45,12 +45,12 @@ class cls_marine_settings:
     def __init__(self):
         """ These are the settings for the marine class in 1 place for easy updating.
             I would eventually like these moved to a text file to be loaded upon init.
-            This way they could be edited by a use without editing this."""
+            This way they could be edited by a user without editing this."""
 
         self.MARINE_START_AGE = 30
 
         self.MARINE_START_EXP = 1
-        self.MARINE_EXP_INTERVAL = 40
+        self.MARINE_EXP_INTERVAL = 40 # Years
         self.MARINE_EXP_INCREMENT = 3
 
         self.MARINE_SERVICE_MEDAL = 500
@@ -59,7 +59,7 @@ class cls_initialize_settings:
     def __init__(self):
         """ These are the various rank stubs that when assembled form everyones rank.
             I would eventually like these moved to a text file to be loaded upon init.
-            This way they could be edited by a use without editing this."""
+            This way they could be edited by a user without editing this."""
 
         # Command Roster Titles
         self.TITLE_CM = " Chapter Master"
@@ -77,24 +77,24 @@ class cls_initialize_settings:
         self.DT_SARGEANT =         "Sargeant"
         self.DT_TROOPER =          "Trooper"
 
-        self.DT_TECHNATUS =        "Tech"
+        self.DT_TECHNATUS =        "Technatus"
 
-        self.DT_CHIEF_APOTHECARY = "Chf-Ap"
-        self.DT_APOTHECARY =       "Apoth"
+        self.DT_CHIEF_APOTHECARY = "Chf-Apoth"
+        self.DT_APOTHECARY =       "Apothecary"
 
-        self.DT_SANCTUS =          "Sanct"
-        self.DT_CHAPLAIN =         "Chpln"
+        self.DT_SANCTUS =          "Sanctus"
+        self.DT_CHAPLAIN =         "Chaplain"
 
         self.DT_CHIEF_LIBRARIAN =  "Librus"
-        self.DT_EPISTOLARY =       "Episto"
-        self.DT_CODICIER =         "Codici"
-        self.DT_LEXICANIUM =       "Lexi"
-        self.DT_ADNUNTIUS =        "Nunti"
+        self.DT_EPISTOLARY =       "Epistolary"
+        self.DT_CODICIER =         "Codicier"
+        self.DT_LEXICANIUM =       "Lexicanium"
+        self.DT_ADNUNTIUS =        "Adnunitus"
 
-        self.DT_CHAMPION =         "Champ"
-        self.DT_ANCIENT =          "Ancio"
+        self.DT_CHAMPION =         "Champion"
+        self.DT_ANCIENT =          "Ancient"
         self.DT_GUARD =            "Guard"
-        self.DT_VETERAN =          "Vet"
+        self.DT_VETERAN =          "Veteran"
 
         # Armoury Roster Titles
         self.AR_TITLE_MASTER_OF_FORGE =    "Forge-Master"
