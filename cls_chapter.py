@@ -47,7 +47,7 @@ class cls_chapter:
 
 		# The Roster[x] contains every member of the chapter.
 		# 0) The Command Roster. Every officer and trooper.
-		# 1) The Dread Roster. Starts at 10. Caps at 20.
+		# 1) The Dread Roster. Starts at 10. Caps at 24.
 		# 2) The Armoury.
 		# 3) The Apothecarion.
 		# 4) The Reclusiam.
@@ -227,7 +227,7 @@ class cls_chapter:
 		 	Next the Dead_Count is incremented by 1
 		 	The Dead Marine is added to the Butchers_Bill (Currently Unused)
 		 	
-		 	If he is special enough(index < 10) he is added to the Honour Roll
+		 	If he is special enough(conditions) he is added to the Honour Roll
 		 	Only if this is the case are his death stats filled out in the
 			Honour roll call
 			
@@ -347,8 +347,9 @@ class cls_chapter:
 
 		# This determines which dreadnought hosts the opening ceremonies of the tournament
 		Contestant_Max = int(len(self.Roster[1])/2)
-		self.Roster[1][rand(0, Contestant_Max)].transcript.append("{}: Hosted the opening ceremonies of the Tournament.".format(self.year))
-
+		fateroll = rand(0, Contestant_Max)
+		self.Roster[1][fateroll].transcript.append("{}: Hosted the opening ceremonies of the Tournament.".format(self.year))
+		self.Roster[1][fateroll].badges.add_badge("H", "Hosted Tournament", "White")
 
 		# This is the tournament of blades:single elimination.
 		Contestants = []
@@ -593,7 +594,7 @@ class cls_chapter:
 					fname = self.FNames[rand(0, len(self.FNames)-1)]
 					lname = self.LNames[rand(0, len(self.LNames)-1)]
 					list.append(cls_marine("Ancient One", self.year, fname, lname))
-					list[-1].transcript[0] = "{:5d}: Founding member of the chapter, Dreanought style.".format(self.year)
+					list[-1].transcript[0] = "{:5d}: Founding member of the chapter, Dreadnought style.".format(self.year)
 					for z in range(rand(50, 70)):
 						list[-1].Advance_Age(self.year)
 			Roster.append(list)

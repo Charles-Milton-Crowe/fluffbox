@@ -16,7 +16,7 @@ class cls_chapter_settings:
         self.KIA_TR = 10
 
         self.KIA_DR = 50
-        self.KIA_SR = 15
+        self.KIA_SR = 25
 
         # The is x to -> after KIA, the chance in X to be available for dread immersion"""
         self.DREAD_ROLL = 20

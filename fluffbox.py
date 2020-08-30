@@ -50,8 +50,9 @@ with open("records/Tournament_of_Blades.txt", 'w', encoding="utf-8") as f:
 """
 
 Most Wanted Problem
-0) [Up-Down] do not work initially when displaying the honour roll. the roll must be visited twice.
+0) [Up/Down] do not work initially when displaying the honour roll. the roll must be visited twice.
     as in [F5]->[F6]->[F5]->[F4]->[F5]->[F6] works around this bug.
+   [Home/End] however do work, except when having worked around the bug using F Keys, that then explodes the program.
 --------------------   
 1) Transcripts that mention when an individual is promoted sometimes doesnt work.
     (e.g. Promoted to Chapter Master. <- these are in cls_chapter.kill_marine)
