@@ -286,6 +286,20 @@ def graphics(screen, chapter):
                     else:
                         Menu_Info.selection += 1
 
+        elif key == curses.KEY_HOME:
+            Menu_Info.selection = 0
+            Menu_Info.mod = 0
+
+        elif key == curses.KEY_END:
+            if Menu_Info.active_roster <= 6 or Menu_Info.active_roster == -1:
+                Menu_Info.selection = Menu_Info.mod + Menu_Info.high - 1
+                Menu_Info.mod = (len(chapter.Roster[Menu_Info.active_roster]) - 1) - (Menu_Info.high - 1)
+
+            elif Menu_Info.active_roster >= 11 and Menu_Info.active_roster <= 20:
+                Menu_Info.selection = Menu_Info.mod + Menu_Info.high - 1
+                Menu_Info.mod = (len(chapter.Roster[9]) - 1) - (Menu_Info.high - 1)
+
+
 
 
 

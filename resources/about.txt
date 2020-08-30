@@ -13,10 +13,11 @@ F5 - Change Active Roster
 F7 - Presents this very page.
 F8 - Closes the program.
 .
-[Enter]   - Displays the transcript for the currently selected marine.
-[Space]   - Toggle the watchlist mode of the currently selected marine.
+[Enter]    - Displays the transcript for the currently selected marine.
+[Space]    - Toggle the watchlist mode of the currently selected marine.
               Watchlist mode set to True displays red.
-[Up/Down] - Changes the currently slected marine.
+[Up/Down]  - Changes the currently slected marine.
+[Home/End] - Goto Start and Finish of selected roster.
 .
 This program places 2 files in the /records/ folder upon termination.
 .
