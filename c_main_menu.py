@@ -299,7 +299,12 @@ def graphics(screen, chapter):
                 Menu_Info.selection = Menu_Info.mod + Menu_Info.high - 1
                 Menu_Info.mod = (len(chapter.Roster[9]) - 1) - (Menu_Info.high - 1)
 
+        elif key == curses.KEY_NPAGE:
 
+            Menu_Info.mod += Menu_Info.high
+            if Menu_Info.mod > (len(chapter.Roster[Menu_Info.active_roster]) - 1) - (Menu_Info.high - 1):
+                Menu_Info.mod = (len(chapter.Roster[Menu_Info.active_roster]) - 1) - (Menu_Info.high - 1)
+                Menu_Info.selection = Menu_Info.high - 1
 
 
 
