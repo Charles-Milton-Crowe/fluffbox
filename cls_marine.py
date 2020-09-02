@@ -40,6 +40,7 @@ class cls_marine:
 		self.settings = cls_marine_settings()
 		self.name = fname + " " + lname
 		self.title = title
+		self.rank = title
 
 		self.age = self.settings.MARINE_START_AGE
 		self.servicelength = 0

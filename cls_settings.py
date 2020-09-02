@@ -1,5 +1,67 @@
 
 
+class cls_org_settings:
+    def __init__(self):
+        self.COMPANY_MAX_CAPTAINS = 1
+        self.COMPANY_MAX_LIEUTENANTS = 2
+        self.COMPANY_MAX_SARGEANTS = 20
+        self.COMPANY_MAX_TROOPERS = 80
+
+        self.COMPANY_MAX_DREADS = 2
+
+        self.COMPANY_MAX_TECHMARINES = 2
+        self.COMPANY_MAX_JR_TECHMARINES = 2
+        self.COMPANY_MAX_APOTHECARIES = 2
+        self.COMPANY_MAX_NURSES = 2
+        self.COMPANY_MAX_CHAPLAINS = 2
+        self.COMPANY_MAX_JR_CHAPLAINS = 2
+        self.COMPANY_MAX_LEXICANII = 2
+        self.COMPANY_MAX_ADNUNTII = 2
+
+        self.COMPANY_MAX_HONOUR_GUARD = 8
+        self.COMPANY_MAX_ANCIENTS = 1
+        self.COMPANY_MAX_CHAMPIONS = 1
+
+        self.KIACHANCE_TROOPERS = 10
+        self.KIACHANCE_SARGEANTS = 15
+        self.KIACHANCE_LIEUTENANTS = 20
+        self.KIACHANCE_CAPTAINS = 25
+        self.KIACHANCE_COMMANDERS = 30
+        self.KIACHANCE_CHAPTER_MASTERS = 35
+        self.KIACHANCE_DREADS = 50
+        self.KIACHANCE_JR_TECHMARINES = 20
+        self.KIACHANCE_TECHMARINES = 25
+        self.KIACHANCE_NURSES = 20
+        self.KIACHANCE_APOTHECARIES = 25
+        self.KIACHANCE_JR_CHAPLAIN = 20
+        self.KIACHANCE_CHAPLAIN = 25
+        self.KIACHANCE_ADNUNTII = 15
+        self.KIACHANCE_LEXICANII = 20
+        self.KIACHANCE_HONOUR_GUARDS = 15
+        self.KIACHANCE_ANCIENTS = 20
+        self.KIACHANCE_CHAMPIONS = 25
+
+        self.DREADCHANCEMAX = 20
+
+        self.DREADCHANCE_TROOPERS = 1
+        self.DREADCHANCE_SARGEANTS = 4
+        self.DREADCHANCE_LIEUTENANTS = 6
+        self.DREADCHANCE_CAPTAINS = 10
+        self.DREADCHANCE_COMMANDERS = 6
+        self.DREADCHANCE_CHAPTER_MASTERS = 4
+        self.DREADCHANCE_DREADS = 0
+        self.DREADCHANCE_JR_TECHMARINES = 1
+        self.DREADCHANCE_TECHMARINES = 2
+        self.DREADCHANCE_NURSES = 1
+        self.DREADCHANCE_APOTHECARIES = 1
+        self.DREADCHANCE_JR_CHAPLAIN = 1
+        self.DREADCHANCE_CHAPLAIN = 1
+        self.DREADCHANCE_ADNUNTII = 1
+        self.DREADCHANCE_LEXICANII = 1
+        self.DREADCHANCE_HONOUR_GUARDS = 2
+        self.DREADCHANCE_ANCIENTS = 1
+        self.DREADCHANCE_CHAMPIONS = 1
+
 class cls_chapter_settings:
     def __init__(self):
         """ These are the settings for the chapter in 1 place for easy updating.
@@ -39,7 +101,6 @@ class cls_chapter_settings:
         self.R_RECLUSIAM_SIZE = 26
         self.R_LIBRARIUS_SIZE = 35
         self.R_VETERAN_SIZE = 120
-
 
 class cls_marine_settings:
     def __init__(self):
@@ -125,4 +186,6 @@ class cls_initialize_settings:
         self.AR_TITLE_CHAMPION =           "Champion"
         self.AR_TITLE_ANCIENT =            "Ancient"
         self.AR_TITLE_VETERAN =            "Veteran"
+
+
 
