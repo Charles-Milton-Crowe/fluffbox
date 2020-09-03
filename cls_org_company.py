@@ -31,6 +31,7 @@ class cls_chapter_command:
             self.commanders.append(self.input_company.marine_requested('captain'))
 
 class cls_company:
+    """ This class is used to represent each company within cls_command"""
     def __init__(self, input_company, name, multi_input_mode):
         self.SETTINGS = cls_org_settings()
         self.name = name
@@ -349,6 +350,10 @@ class cls_company:
                 self.honoured.append(marine)
 
 class cls_marine_generator:
+    """ This class serves as the 'endcap' to the snakelike companies.
+        marine_requested generated new troopers and handles the marines
+        through rank changes."""
+
     def __init__(self, name):
         self.settings = cls_org_settings()
         self.name = name
@@ -361,6 +366,7 @@ class cls_marine_generator:
         self.dread_potentials = []
 
     def marine_requested(self, selected_type):
+        """ This does all the magic"""
 
         type_dict = {'trooper':       1,
                      'sargeant':      2,
@@ -449,4 +455,5 @@ class cls_marine_generator:
         return namelist
 
     def init_sp_input_company(self, input_company):
+        # This is the hook in for the veteran company and the ranks above trooper.
         self.sp_input_company = input_company

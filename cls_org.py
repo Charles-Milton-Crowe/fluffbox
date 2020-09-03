@@ -11,66 +11,81 @@ from cls_assets import cls_assets
 
 from random import randint as rand
 
-import re, time, sys
-
 def date(year):
+    """ Not in use. Designed to display years in 40k format ex M42.360"""
     millenium = year % 1000
     while year > 1000:
         year -= 1000        
     return "M{}.{}".format(millenium, year)
 
 class cls_chapter:
+    """ This is the work in progress analog to the cls_chapter found in
+    cls_chapter.py"""
     def __init__(self, name):
+
+
+
         self.name = self.get_chapter_name()
         self.year = 40000
-        
-        self.scout_source = []
-        self.commands = []
-        self.chapter_command = []
+
+        # The organization framework for the chapter.
+        # build_org_framework() builds it, display_commands whows how its connected.
+        self.scout_source, self.commands, self.veteran_company, self.chapter_command = self.build_org_framework()
+
         self.honoured = []
-        
         self.dead_cnt = 0
         self.cm_cnt = 1
 
+        # Not currently used.
         self.assets = self.pop_assets()
 
         self.basic_epitaphs, self.complex_epitaphs = self.load_epitaphs()
 
+        # This kicks off the entire chapter to populate.
+        self.veteran_company.reinforce()
+        self.chapter_command.init_command()
+
+
+
+    def build_org_framework(self):
+        """ This build the chapter org framework and returns it to the chapter __init__."""
+
         namelist = Load_Namefile("resources/org_names.txt")
+        commands = []
 
         # Instantiate the Scout Generator
-        self.scout_source.append(cls_marine_generator(namelist[0]))
+        scout_source = cls_marine_generator(namelist[0])
 
         # Instantiate the 3 Commands with 4 companies each.
         index = 1
         for _ in range(3):
             names = []
             names.append(namelist[index])
-            names.append(namelist[index+1])
-            names.append(namelist[index+2])
-            names.append(namelist[index+3])
+            names.append(namelist[index + 1])
+            names.append(namelist[index + 2])
+            names.append(namelist[index + 3])
             names.append(namelist[index + 4])
-            self.commands.append(cls_command(names, self.scout_source[0]))
+            commands.append(cls_command(names, scout_source))
             index += 5
-        self.commands.reverse()
+        commands.reverse()
 
         # Instantiate the Veteran Company
         input_list = []
-        input_list.append(self.commands[0].companies[0])
-        input_list.append(self.commands[1].companies[0])
-        input_list.append(self.commands[2].companies[0])
-        self.veteran_company = (cls_company(input_list, namelist[-1], True))
+        input_list.append(commands[0].companies[0])
+        input_list.append(commands[1].companies[0])
+        input_list.append(commands[2].companies[0])
+        veteran_company = (cls_company(input_list, namelist[-1], True))
 
         # Hook the Veteran Company into the Generator.
-        self.scout_source[0].init_sp_input_company(self.veteran_company)
+        scout_source.init_sp_input_company(veteran_company)
 
         # Instantiate the Chapter Command
-        self.chapter_command = (cls_chapter_command(self.veteran_company))
+        chapter_command = (cls_chapter_command(veteran_company))
 
-        self.veteran_company.reinforce()
-        self.chapter_command.init_command()
+        return scout_source, commands, veteran_company, chapter_command
 
     def display_commands(self):
+        """ Displays the org framework in a much more user friendly way."""
         print("\nChapter Org Display\n".format())
         print("[Name of Company]            [Recruitment Source]")
         print("-------------------------------------------------")
@@ -84,10 +99,13 @@ class cls_chapter:
             for company in command.companies:
                 print(" {:25} <- {}".format(company.name, company.input_company.name))
         print()
-        print(self.scout_source[0].display_input())
+        print(self.scout_source.display_input())
         print()
 
     def display_troop_strength(self):
+        """ This is a temporary func to detect anomolies before all this gets
+            hooked into the curses gui."""
+
         print("------------------------------------------------------------")
         self.veteran_company.display_marines()
         print("------------------------------------------------------------")
@@ -99,6 +117,8 @@ class cls_chapter:
 
 
     def display_roster(self):
+        """ Builds a roster. currently unused."""
+
         roster = []
         for command in self.commands:
             roster.extend(command.get_command_roster())
@@ -107,6 +127,8 @@ class cls_chapter:
             print(line)
 
     def roll_fate(self):
+        """ Calls roll_fate in veteran company and then in each command."""
+
         #print("Chapter fate_roll()")
 
         self.veteran_company.roll_fate()
@@ -122,6 +144,7 @@ class cls_chapter:
                 self.honoured.append(marine)
                 
     def advance(self):
+        """ One day.."""
         pass
 
     def pop_assets(self):
@@ -181,6 +204,7 @@ class cls_chapter:
             return new_string[0] + " " + new_string[rand(1, len(new_string) - 1)] + "."
     
     def age_chapter(self):
+        """ This will age the founding chapter members the appropriate ammount."""
         pass
 
 

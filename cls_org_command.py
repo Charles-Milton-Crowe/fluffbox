@@ -1,6 +1,7 @@
 from cls_org_company import cls_company
 
 class cls_command:
+    """ The purpose of this class is to reside in chapter.commands and hold a given number of companies."""
     def __init__(self, names, recruitment_source):
         self.name = names[0]
         #print(self.name + " created. <COMMAND>")
