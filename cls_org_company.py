@@ -4,15 +4,15 @@ from cls_settings import cls_org_settings
 from cls_marine import cls_marine
 
 from initialize import Load_Namefile
+from initialize import Get_Letters
 
 from random import randint as rand
-from random import sample
 
-import time
 
 
 
 class cls_chapter_command:
+
     def __init__(self, input_company):
         print("Initializing Chapter Command".format())
         self.chapter_master = []
@@ -30,12 +30,14 @@ class cls_chapter_command:
             self.commanders.pop(0)
             self.commanders.append(self.input_company.marine_requested('captain'))
 
+
 class cls_company:
     """ This class is used to represent each company within cls_command"""
-    def __init__(self, input_company, name, multi_input_mode):
+    def __init__(self, input_company, company_number, multi_input_mode):
         self.SETTINGS = cls_org_settings()
-        self.name = name
         self.year = 40000
+        self.company_number = company_number
+        self.name = self.get_name()
         #print(self.name + " created.")
 
         self.input_company = input_company
@@ -203,7 +205,6 @@ class cls_company:
                 self.rank[selected_type].append(self.input_company[choice].marine_requested(selected_type))
 
         return marine
-
 
     def reinforce_rank(self, selected_type):
         #print("Reinforcing {} with {}".format(self.name, selected_type.capitalize()))
@@ -392,10 +393,26 @@ class cls_company:
 
                 for x in range(self.starting_age_dict[type]):
                     marine.Advance_Age(self.year)
-                print("{} {}".format(marine,marine.age))
+                #print("{} {}".format(marine,marine.age))
 
+    def get_name(self):
 
+        subtype_dict = {0:'Veteran',
+                        1:'Assault',
+                        2:'Assault',
+                        3:'Assault',
+                        4:'Battle',
+                        5:'Battle',
+                        6:'Battle',
+                        7:'Reserves',
+                        8:'Reserves',
+                        9:'Reserves',
+                        10:'Scouts',
+                        11:'Scouts',
+                        12:'Scouts',
+                        }
 
+        return "{:>4} Company: {}".format(Get_Letters(self.company_number), subtype_dict[self.company_number])
 
 
 class cls_marine_generator:
@@ -410,9 +427,10 @@ class cls_marine_generator:
         self.FNames = self.Pop_First_Namelist()
         self.LNames = self.Pop_Last_Namelist()
 
-        self.sp_input_company = cls_company(self, "TEMP COMPANY", False)
+        self.sp_input_company = cls_company(self, 0, False)
 
         self.dread_potentials = []
+
 
     def marine_requested(self, selected_type):
         """ This does all the magic"""
@@ -488,6 +506,7 @@ class cls_marine_generator:
 
     def reinforce_rank(self, selected_type):
         pass
+
 
     def roll_fate(self):
         pass

@@ -51,22 +51,17 @@ class cls_chapter:
     def build_org_framework(self):
         """ This build the chapter org framework and returns it to the chapter __init__."""
 
-        namelist = Load_Namefile("resources/org_names.txt")
         commands = []
 
         # Instantiate the Scout Generator
-        scout_source = cls_marine_generator(namelist[0])
+        scout_source = cls_marine_generator("Unblooded Scout Pool")
 
         # Instantiate the 3 Commands with 4 companies each.
         index = 1
-        for _ in range(3):
-            names = []
-            names.append(namelist[index])
-            names.append(namelist[index + 1])
-            names.append(namelist[index + 2])
-            names.append(namelist[index + 3])
-            names.append(namelist[index + 4])
-            commands.append(cls_command(names, scout_source))
+        ending_company_number = 12
+        for x in range(3, 0, -1):
+            commands.append(cls_command(x, ending_company_number, scout_source))
+            ending_company_number -= 1
             index += 5
         commands.reverse()
 
@@ -75,7 +70,7 @@ class cls_chapter:
         input_list.append(commands[0].companies[0])
         input_list.append(commands[1].companies[0])
         input_list.append(commands[2].companies[0])
-        veteran_company = (cls_company(input_list, namelist[-1], True))
+        veteran_company = (cls_company(input_list, 0, True))
 
         # Hook the Veteran Company into the Generator.
         scout_source.init_sp_input_company(veteran_company)
@@ -211,6 +206,8 @@ class cls_chapter:
         for command in self.commands:
             for company in command.companies:
                 company.age_company()
+
+
 
 
 

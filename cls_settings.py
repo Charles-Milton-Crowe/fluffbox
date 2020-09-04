@@ -2,6 +2,8 @@
 
 class cls_org_settings:
     def __init__(self):
+
+        # Coming soon.. options for Double Strength Companies.
         self.COMPANY_MAX_CAPTAINS = 1
         self.COMPANY_MAX_LIEUTENANTS = 2
         self.COMPANY_MAX_SARGEANTS = 20
@@ -22,6 +24,7 @@ class cls_org_settings:
         self.COMPANY_MAX_ANCIENTS = 1
         self.COMPANY_MAX_CHAMPIONS = 1
 
+        # These are the 1 in X chance that a member of a given rank.
         self.KIACHANCE_TROOPERS = 10
         self.KIACHANCE_SARGEANTS = 15
         self.KIACHANCE_LIEUTENANTS = 20
@@ -41,8 +44,10 @@ class cls_org_settings:
         self.KIACHANCE_ANCIENTS = 20
         self.KIACHANCE_CHAMPIONS = 25
 
+        # This is chances in X to be available for dreadnought insertion .
         self.DREADCHANCEMAX = 20
 
+        # These are X Chances in DREADCHANCEMAX to be available for dreadnough insertion.
         self.DREADCHANCE_TROOPERS = 1
         self.DREADCHANCE_SARGEANTS = 4
         self.DREADCHANCE_LIEUTENANTS = 6
@@ -62,6 +67,8 @@ class cls_org_settings:
         self.DREADCHANCE_ANCIENTS = 1
         self.DREADCHANCE_CHAMPIONS = 1
 
+        # These are the number of decades each rank is aged at chapter creation.
+        # Marines begin at 30yrs old + STARTING_AGE
         self.STARTING_AGE_TROOPERS = 5
         self.STARTING_AGE_SARGEANTS = 15
         self.STARTING_AGE_LIEUTENANTS = 25
