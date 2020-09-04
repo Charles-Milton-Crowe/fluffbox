@@ -2,7 +2,9 @@
 
 from cls_org import cls_chapter
 
-""" Although not entirely completed the idea is that the modular nature
+""" 
+    Mr Duck,
+    Although not entirely completed the idea is that the modular nature
     of the cls_company will allow different configurations possible
     for a given chapter. For instance, the old 1-10 system or this new 
     3 fleet system, or a combination of these things. Allowing different
@@ -56,24 +58,6 @@ keepgoing = int(input("Press 0 to keep going"))
 
 while keepgoing == 0:
 
-    """ Ok, somehow, even though the previous display shows attrition in 
-        the various company rosters. Those changes arent happening??
-        
-        What i see is that no new marines are created but each time the 
-        roll_fate func is called new values are displayed.
-        
-        If this was working correctly repeated calls to roll_fate would
-        result in decreasing totals of marines as they are not replenished
-        between calls at present."""
-
-    for command in chapter.commands:
-        for company in command.companies:
-            print("Roster for: ", company.name)
-            roster = company.get_roster()
-            for line in roster:
-                print(line)
-
-    chapter.roll_fate()
-    chapter.display_troop_strength()
+    chapter.advance()
 
     keepgoing = int(input("Press 0 to keep going"))

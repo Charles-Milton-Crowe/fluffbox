@@ -113,14 +113,14 @@ class cls_chapter:
 
 
     def display_roster(self):
-        """ Builds a roster. currently unused."""
+        """ Displays all companies."""
 
-        roster = []
         for command in self.commands:
-            roster.extend(command.get_command_roster())
-
-        for line in roster:
-            print(line)
+            for company in command.companies:
+                print("Roster for: ", company.name)
+                roster = company.get_roster()
+                for line in roster:
+                    print(line)
 
     def roll_fate(self):
         """ Calls roll_fate in veteran company and then in each command."""
@@ -141,7 +141,43 @@ class cls_chapter:
                 
     def advance(self):
         """ One day.."""
-        pass
+
+        self.year += 10
+
+
+
+
+        self.roll_fate()
+
+        self.assets.Fleet_Update(self.year)
+
+        #self.display_roster()
+        #self.display_troop_strength()
+        roster = []
+
+        self.veteran_company.year = self.year
+        """for captain in self.veteran_company.captains:
+            captain.company_number = self.veteran_company.company_number
+            roster.append(captain.C_Get_Statline())
+
+        for command in self.commands:
+            for company in command.companies:
+                company.year += 10
+                for captain in company.captains:
+                    captain.company_number = company.company_number
+                    roster.append(captain.C_Get_Statline())"""
+
+        roster = self.commands[0].companies[0].get_roster()
+
+        for line in roster:
+            print(line)
+
+        self.veteran_company.reinforce()
+        ticker = "{:^20s} - Yr: {}, Dead: {}, Honoured: {}".format(self.name,
+                                                                   self.year,
+                                                                   self.dead_cnt,
+                                                                   len(self.honoured))
+        print(ticker)
 
     def pop_assets(self):
         """ This builds the initial Assets of the Chapter in the initialization sequence. Used once.

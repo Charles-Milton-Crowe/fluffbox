@@ -9,8 +9,6 @@ from initialize import Get_Letters
 from random import randint as rand
 
 
-
-
 class cls_chapter_command:
 
     def __init__(self, input_company):
@@ -182,7 +180,6 @@ class cls_company:
         self.dead_cnt = 0
         self.butchers_bill = []
 
-
     def marine_requested(self, selected_type):
         """ The given rank is requested from the input chapter.
             This method is always called from another instance of the class, higher in the chain."""
@@ -214,12 +211,10 @@ class cls_company:
         while len(self.rank[selected_type]) < self.settings_dict[selected_type]:
             if self.multi_input_mode == False:
                 marine = self.input_company.marine_requested(selected_type)
-                marine.company_number = self.company_number
                 self.rank[selected_type].append(marine)
             else:
                 choice = rand(0, len(self.input_company) - 1)
                 marine = self.input_company[choice].marine_requested(selected_type)
-                marine.company_number = self.company_number
                 self.rank[selected_type].append(marine)
 
         if self.multi_input_mode == False:
@@ -265,18 +260,15 @@ class cls_company:
 
     def get_roster(self):
         roster = []
-        for captain in self.captains:
-            captain.company_number = self.company_number
-            roster.append(captain.C_Get_Statline())
-        for lieutenant in self.lieutenants:
-            lieutenant.company_number = self.company_number
-            roster.append(lieutenant.C_Get_Statline())
-        for sargeant in self.sargeants:
-            sargeant.company_number = self.company_number
-            roster.append(sargeant.C_Get_Statline())
-        for trooper in self.troopers:
-            trooper.company_number = self.company_number
-            roster.append(trooper.C_Get_Statline())
+
+        for entry in ('trooper', 'sargeant', 'lieutenant', 'captain',
+                      'dread', 'jr_techmarine', 'techmarine', 'nurse', 'apothecary',
+                      'jr_chaplain', 'chaplain', 'adnuntius', 'lexicanium',
+                      'honour_guard', 'ancient', 'champion'):
+
+            for marine in self.rank[entry]:
+                marine.company_number = self.company_number
+                roster.append(marine.C_Get_Statline())
 
         return roster
 
@@ -299,10 +291,9 @@ class cls_company:
             new_list = []
             # For each marine in that rank..
 
-            #if self.ranknum_dict[type] == 1:
-            #    print("Length of self.troopers ->{}".format(len(self.rank[type])))
-            #    print("{}".format(str(self.rank[type])))
             for marine in self.rank[type]:
+
+                marine.Advance_Age(self.year)
                 #print(type + marine.rank)
 
 
@@ -330,9 +321,6 @@ class cls_company:
             # But i am clearly mistaken.
             self.rank[type] = new_list
 
-            #if self.ranknum_dict[type] == 1:
-            #    print("START:{}: Troopers {}, Type {}".format(self.name, str(len(self.troopers)), type))
-            #    print("Length of new_list ->{}".format(len(new_list)))
             # But this does.
             if self.ranknum_dict[type] == 1:
                 self.troopers = new_list
@@ -367,8 +355,6 @@ class cls_company:
             elif self.ranknum_dict[type] == 16:
                 self.champions = new_list
 
-            #if self.ranknum_dict[type] == 1:
-            #    print("END:{}: Troopers {}, Type {}\n".format(self.name, str(len(self.troopers)), type))
 
         # forward all fowarded and created Dread potentials to input company
         for marine in self.dread_potentials:
