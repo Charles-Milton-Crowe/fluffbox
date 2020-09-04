@@ -267,7 +267,7 @@ class cls_company:
                       'honour_guard', 'ancient', 'champion'):
 
             for marine in self.rank[entry]:
-                marine.company_number = self.company_number
+                #marine.company_number = self.company_number
                 roster.append(marine.C_Get_Statline())
 
         return roster
@@ -377,7 +377,7 @@ class cls_company:
                 self.honoured.append(marine)
 
     def age_company(self):
-        print(self.name + ": Aging...")
+        #print(self.name + ": Aging...")
         for type in ('trooper', 'sargeant', 'lieutenant', 'captain',
                  'dread', 'jr_techmarine' ,'techmarine', 'nurse', 'apothecary',
                  'jr_chaplain', 'chaplain',  'adnuntius', 'lexicanium',
@@ -407,6 +407,15 @@ class cls_company:
                         }
 
         return "{:>4} Company: {}".format(Get_Letters(self.company_number), subtype_dict[self.company_number])
+    def set_company_numbers(self):
+
+        for entry in ('trooper', 'sargeant', 'lieutenant', 'captain',
+                      'dread', 'jr_techmarine', 'techmarine', 'nurse', 'apothecary',
+                      'jr_chaplain', 'chaplain', 'adnuntius', 'lexicanium',
+                      'honour_guard', 'ancient', 'champion'):
+
+            for marine in self.rank[entry]:
+                marine.company_number = self.company_number
 
 
 class cls_marine_generator:

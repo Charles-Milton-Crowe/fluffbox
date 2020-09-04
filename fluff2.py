@@ -2,6 +2,8 @@
 
 from cls_org import cls_chapter
 
+from fluff2_menu import fluff_menu
+
 """ 
     Mr Duck,
     Although not entirely completed the idea is that the modular nature
@@ -50,14 +52,4 @@ print("""
     Each company will have a mini roster for all ranks in the company\n""")
 
 chapter = cls_chapter("Chapter Crusade Fleet")
-chapter.display_commands()
-input("[Enter Anything]")
-
-chapter.display_troop_strength()
-keepgoing = int(input("Press 0 to keep going"))
-
-while keepgoing == 0:
-
-    chapter.advance()
-
-    keepgoing = int(input("Press 0 to keep going"))
+fluff_menu(chapter)

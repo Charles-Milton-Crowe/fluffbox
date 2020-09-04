@@ -47,6 +47,13 @@ class cls_chapter:
 
         self.age_chapter()
 
+        self.veteran_company.set_company_numbers()
+
+        for command in self.commands:
+            for company in command.companies:
+                company.year += 10
+                company.set_company_numbers()
+
 
     def build_org_framework(self):
         """ This build the chapter org framework and returns it to the chapter __init__."""
@@ -144,33 +151,19 @@ class cls_chapter:
 
         self.year += 10
 
-
-
-
         self.roll_fate()
 
         self.assets.Fleet_Update(self.year)
 
-        #self.display_roster()
-        #self.display_troop_strength()
-        roster = []
-
-        self.veteran_company.year = self.year
-        """for captain in self.veteran_company.captains:
-            captain.company_number = self.veteran_company.company_number
-            roster.append(captain.C_Get_Statline())
+        self.veteran_company.year += 10
+        self.veteran_company.set_company_numbers()
 
         for command in self.commands:
             for company in command.companies:
                 company.year += 10
-                for captain in company.captains:
-                    captain.company_number = company.company_number
-                    roster.append(captain.C_Get_Statline())"""
+                company.set_company_numbers()
 
-        roster = self.commands[0].companies[0].get_roster()
 
-        for line in roster:
-            print(line)
 
         self.veteran_company.reinforce()
         ticker = "{:^20s} - Yr: {}, Dead: {}, Honoured: {}".format(self.name,
