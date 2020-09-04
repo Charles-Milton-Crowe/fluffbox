@@ -213,10 +213,14 @@ class cls_company:
 
         while len(self.rank[selected_type]) < self.settings_dict[selected_type]:
             if self.multi_input_mode == False:
-                self.rank[selected_type].append(self.input_company.marine_requested(selected_type))
+                marine = self.input_company.marine_requested(selected_type)
+                marine.company_number = self.company_number
+                self.rank[selected_type].append(marine)
             else:
                 choice = rand(0, len(self.input_company) - 1)
-                self.rank[selected_type].append(self.input_company[choice].marine_requested(selected_type))
+                marine = self.input_company[choice].marine_requested(selected_type)
+                marine.company_number = self.company_number
+                self.rank[selected_type].append(marine)
 
         if self.multi_input_mode == False:
             self.input_company.reinforce_rank(selected_type)
@@ -262,12 +266,16 @@ class cls_company:
     def get_roster(self):
         roster = []
         for captain in self.captains:
+            captain.company_number = self.company_number
             roster.append(captain.C_Get_Statline())
         for lieutenant in self.lieutenants:
+            lieutenant.company_number = self.company_number
             roster.append(lieutenant.C_Get_Statline())
         for sargeant in self.sargeants:
+            sargeant.company_number = self.company_number
             roster.append(sargeant.C_Get_Statline())
         for trooper in self.troopers:
+            trooper.company_number = self.company_number
             roster.append(trooper.C_Get_Statline())
 
         return roster
@@ -295,18 +303,18 @@ class cls_company:
             #    print("Length of self.troopers ->{}".format(len(self.rank[type])))
             #    print("{}".format(str(self.rank[type])))
             for marine in self.rank[type]:
-                print(type + marine.rank)
+                #print(type + marine.rank)
 
 
                 # Death is a 1 in X chance, where X is dependent on the given marines
                 # rank. These values are stores in the SETTINGS for the company.
-                if rand(1, self.fateroll_dict[marine.title]) == 1:
+                if rand(1, self.fateroll_dict[marine.rank]) == 1:
                     self.dead_cnt += 1
                     marine.KIA = 1
                     #print(marine.C_Get_Statline())
 
                     # Dreadnought immersion -AVAILABILTY- is Dreadchance[based on rank] in Dread Chance Max
-                    if (rand(1 ,self.SETTINGS.DREADCHANCEMAX) > self.dreadchance_dict[marine.title]) \
+                    if (rand(1 ,self.SETTINGS.DREADCHANCEMAX) > self.dreadchance_dict[marine.rank]) \
                             and (marine.isDread() == False):
 
                         self.dread_potentials.append(marine)
@@ -497,7 +505,6 @@ class cls_marine_generator:
         elif type_dict[selected_type] ==16:
             marine = self.sp_input_company.marine_requested('ancient')
 
-        marine.title = selected_type
         marine.rank = selected_type
         return marine
 

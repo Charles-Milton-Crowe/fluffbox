@@ -66,6 +66,13 @@ while keepgoing == 0:
         result in decreasing totals of marines as they are not replenished
         between calls at present."""
 
+    for command in chapter.commands:
+        for company in command.companies:
+            print("Roster for: ", company.name)
+            roster = company.get_roster()
+            for line in roster:
+                print(line)
+
     chapter.roll_fate()
     chapter.display_troop_strength()
 

@@ -2,6 +2,8 @@
 
 from cls_settings import cls_marine_settings
 
+from initialize import Get_Letters
+
 from random import randint as rand
 
 class cls_roster:
@@ -36,11 +38,16 @@ class cls_badge_rack:
 		self.badges.append(cls_badge(badge, name, color))
 
 class cls_marine:
-	def __init__(self, title, Year, fname, lname):
+	def __init__(self, rank, Year, fname, lname):
 		self.settings = cls_marine_settings()
 		self.name = fname + " " + lname
-		self.title = title
-		self.rank = title
+		self.rank = rank
+		self.company_number = 13
+
+
+
+
+
 
 		self.age = self.settings.MARINE_START_AGE
 		self.servicelength = 0
@@ -76,7 +83,7 @@ class cls_marine:
 
 	def C_Get_Statline(self):
 		if self.KIA == 0:
-			return "{:>21s} {:21s}{}, Age:{:4d}, (Alive): ({:2},{:3})".format(self.title,
+			return "{:>21s} {:21s}{}, Age:{:4d}, (Alive): ({:2},{:3})".format(self.get_title(),
 																  self.name,
 																  self.badges.show_badges(),
 
@@ -85,7 +92,7 @@ class cls_marine:
 																  self.exp,)
 
 		elif self.KIA == 1 or self.KIA == 2:
-			return "{:>22s} {:21s}{}, Age:{:4d}, (Dead):{:<5d} | {:22s}".format(self.title,
+			return "{:>22s} {:21s}{}, Age:{:4d}, (Dead):{:<5d} | {:22s}".format(self.get_title(),
 																			self.name,
 																			self.badges.show_badges(),
 																			self.age,
@@ -93,6 +100,9 @@ class cls_marine:
 																			self.epitaph)
 		else:
 			return "Get_Statline: Receiving KIA that is NOT 0,1,2."
+
+	def get_title(self):
+		return "{}, {:>3}".format(self.rank, Get_Letters(self.company_number))
 
 	def Toggle_Watchlist(self):
 		if self.watchlist is True:
@@ -107,4 +117,4 @@ class cls_marine:
 		return self.Dread_Status
 
 	def __str__(self):
-		return ":{:30}| {:30}:KIA({})".format(self.title, self.name, self.KIA)
+		return ":{:30}| {:30}:KIA({})".format(self.get_title(), self.name, self.KIA)
