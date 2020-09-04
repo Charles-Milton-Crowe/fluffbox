@@ -62,6 +62,25 @@ class cls_org_settings:
         self.DREADCHANCE_ANCIENTS = 1
         self.DREADCHANCE_CHAMPIONS = 1
 
+        self.STARTING_AGE_TROOPERS = 5
+        self.STARTING_AGE_SARGEANTS = 15
+        self.STARTING_AGE_LIEUTENANTS = 25
+        self.STARTING_AGE_CAPTAINS = 35
+        self.STARTING_AGE_COMMANDERS = 45
+        self.STARTING_AGE_CHAPTER_MASTERS = 50
+        self.STARTING_AGE_DREADS = 60
+        self.STARTING_AGE_JR_TECHMARINES = 20
+        self.STARTING_AGE_TECHMARINES = 25
+        self.STARTING_AGE_NURSES = 20
+        self.STARTING_AGE_APOTHECARIES = 25
+        self.STARTING_AGE_JR_CHAPLAIN = 20
+        self.STARTING_AGE_CHAPLAIN = 25
+        self.STARTING_AGE_ADNUNTII = 20
+        self.STARTING_AGE_LEXICANII = 25
+        self.STARTING_AGE_HONOUR_GUARDS = 20
+        self.STARTING_AGE_ANCIENTS = 25
+        self.STARTING_AGE_CHAMPIONS = 30
+
 class cls_chapter_settings:
     def __init__(self):
         """ These are the settings for the chapter in 1 place for easy updating.

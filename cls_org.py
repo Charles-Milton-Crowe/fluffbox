@@ -45,6 +45,7 @@ class cls_chapter:
         self.veteran_company.reinforce()
         self.chapter_command.init_command()
 
+        self.age_chapter()
 
 
     def build_org_framework(self):
@@ -205,7 +206,16 @@ class cls_chapter:
     
     def age_chapter(self):
         """ This will age the founding chapter members the appropriate ammount."""
-        pass
+
+        self.veteran_company.age_company()
+        for command in self.commands:
+            for company in command.companies:
+                company.age_company()
+
+
+
+
+
 
 
 

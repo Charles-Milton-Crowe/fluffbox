@@ -35,6 +35,7 @@ class cls_company:
     def __init__(self, input_company, name, multi_input_mode):
         self.SETTINGS = cls_org_settings()
         self.name = name
+        self.year = 40000
         #print(self.name + " created.")
 
         self.input_company = input_company
@@ -159,6 +160,22 @@ class cls_company:
                              'honour_guard': 14,
                              'ancient':      15,
                              'champion':     16}
+        self.starting_age_dict = {'trooper':self.SETTINGS.STARTING_AGE_TROOPERS,
+                                    'sargeant':self.SETTINGS.STARTING_AGE_SARGEANTS,
+                                    'lieutenant':self.SETTINGS.STARTING_AGE_LIEUTENANTS,
+                                    'captain':self.SETTINGS.STARTING_AGE_CAPTAINS,
+                                    'dread':self.SETTINGS.STARTING_AGE_DREADS,
+                                    'jr_techmarine':self.SETTINGS.STARTING_AGE_JR_TECHMARINES,
+                                    'techmarine':self.SETTINGS.STARTING_AGE_TECHMARINES,
+                                    'nurse':self.SETTINGS.STARTING_AGE_NURSES,
+                                    'apothecary':self.SETTINGS.STARTING_AGE_APOTHECARIES,
+                                    'jr_chaplain':self.SETTINGS.STARTING_AGE_JR_CHAPLAIN,
+                                    'chaplain':self.SETTINGS.STARTING_AGE_CHAPLAIN,
+                                    'adnuntius':self.SETTINGS.STARTING_AGE_ADNUNTII,
+                                    'lexicanium':self.SETTINGS.STARTING_AGE_LEXICANII,
+                                    'honour_guard':self.SETTINGS.STARTING_AGE_HONOUR_GUARDS,
+                                    'ancient':self.SETTINGS.STARTING_AGE_ANCIENTS,
+                                    'champion':self.SETTINGS.STARTING_AGE_CHAMPIONS}
 
         self.dead_cnt = 0
         self.butchers_bill = []
@@ -269,10 +286,15 @@ class cls_company:
                      'dread', 'jr_techmarine' ,'techmarine', 'nurse', 'apothecary',
                      'jr_chaplain', 'chaplain',  'adnuntius', 'lexicanium',
                      'honour_guard', 'ancient', 'champion'):
+
             new_list = []
             # For each marine in that rank..
+
+            #if self.ranknum_dict[type] == 1:
+            #    print("Length of self.troopers ->{}".format(len(self.rank[type])))
+            #    print("{}".format(str(self.rank[type])))
             for marine in self.rank[type]:
-                #print(type + marine.C_Get_Statline())
+                print(type + marine.rank)
 
 
                 # Death is a 1 in X chance, where X is dependent on the given marines
@@ -293,8 +315,15 @@ class cls_company:
                     new_list.append(marine)
 
             # Update roster sans dead marines.
-            #self.rank[type] = new_list <- I Dont know why this doesnt work.
 
+            # I dont know why the code requires this line and that huge elif block
+            # to function correctly, but it does. I would think it would take either or.
+            # But i am clearly mistaken.
+            self.rank[type] = new_list
+
+            #if self.ranknum_dict[type] == 1:
+            #    print("START:{}: Troopers {}, Type {}".format(self.name, str(len(self.troopers)), type))
+            #    print("Length of new_list ->{}".format(len(new_list)))
             # But this does.
             if self.ranknum_dict[type] == 1:
                 self.troopers = new_list
@@ -329,6 +358,9 @@ class cls_company:
             elif self.ranknum_dict[type] == 16:
                 self.champions = new_list
 
+            #if self.ranknum_dict[type] == 1:
+            #    print("END:{}: Troopers {}, Type {}\n".format(self.name, str(len(self.troopers)), type))
+
         # forward all fowarded and created Dread potentials to input company
         for marine in self.dread_potentials:
             #print(self.name)
@@ -348,6 +380,23 @@ class cls_company:
                 self.honoured.append(marine)
             elif self.ranknum_dict[marine.rank] <= 4 and len(marine.badges.badges) > 1:
                 self.honoured.append(marine)
+
+    def age_company(self):
+        print(self.name + ": Aging...")
+        for type in ('trooper', 'sargeant', 'lieutenant', 'captain',
+                 'dread', 'jr_techmarine' ,'techmarine', 'nurse', 'apothecary',
+                 'jr_chaplain', 'chaplain',  'adnuntius', 'lexicanium',
+                 'honour_guard', 'ancient', 'champion'):
+
+            for marine in self.rank[type]:
+
+                for x in range(self.starting_age_dict[type]):
+                    marine.Advance_Age(self.year)
+                print("{} {}".format(marine,marine.age))
+
+
+
+
 
 class cls_marine_generator:
     """ This class serves as the 'endcap' to the snakelike companies.
@@ -384,10 +433,12 @@ class cls_marine_generator:
                      'honour_guard': 14,
                      'ancient':      15,
                      'champion':     16}
+
         if type_dict[selected_type] == 1:
             fname = self.FNames[rand(0, len(self.FNames) - 1)]
             lname = self.LNames[rand(0, len(self.LNames) - 1)]
             return cls_marine(selected_type, 40000, fname, lname)
+
         elif type_dict[selected_type] == 2:
             marine = self.sp_input_company.marine_requested('trooper')
         elif type_dict[selected_type] == 3:
@@ -401,9 +452,9 @@ class cls_marine_generator:
                 choice = rand(0, len(self.dread_potentials))
                 marine = self.dread_potentials[choice]
                 self.dread_potentials.pop(choice)
-                return marine
             else:
-                return self.sp_input_company.marine_requested('trooper')
+                marine = self.sp_input_company.marine_requested('trooper')
+
 
         elif type_dict[selected_type] == 6:
             marine = self.sp_input_company.marine_requested('jr_techmarine')
