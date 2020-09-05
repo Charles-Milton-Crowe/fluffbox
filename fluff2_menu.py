@@ -1,5 +1,7 @@
 
 
+from initialize import Load_Namefile
+
 import curses
 
 
@@ -31,6 +33,22 @@ class cls_menu_info:
         self.show_honour_guards =  False
         self.show_ancients =       False
         self.show_champions =      False
+
+
+def print_about(screen):
+    """ This prints the  file resources/about.txt"""
+
+    screen.clear()
+
+    about = Load_Namefile("resources/about.txt")
+    for Index, line in enumerate(about):
+        screen.addstr(Index + 2, 0, about[Index])
+
+    screen.refresh()
+
+    key = screen.getch()
+
+    return screen
 
 
 def top_ticker(screen, menuinfo):
@@ -261,6 +279,16 @@ def bottom_ticker(screen, menuinfo, chapter):
     screen.attroff(curses.color_pair(1))
     return screen
 
+def display_full_screen(screen, menuinfo, chapter):
+    screen.clear()
+    screen = top_ticker(screen, menuinfo)
+
+    roster = get_roster(chapter, menuinfo)
+    screen = print_roster(screen, roster, menuinfo)
+
+    screen = bottom_ticker(screen, menuinfo, chapter)
+    screen.refresh()
+    return screen
 
 def gui(screen, chapter):
     h, w = screen.getmaxyx()
@@ -268,17 +296,30 @@ def gui(screen, chapter):
     curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_WHITE)
     curses.init_pair(2, curses.COLOR_WHITE, curses.COLOR_BLUE)
     curses.init_pair(3, curses.COLOR_RED, curses.COLOR_BLACK)
-    
     menuinfo = cls_menu_info(h-2)
 
-    screen = top_ticker(screen,menuinfo)
-    roster = get_roster(chapter, menuinfo)
+    display_full_screen(screen, menuinfo, chapter)
 
-    screen = print_roster(screen, roster, menuinfo)
+    keepgoing = True
+    while keepgoing:
+        key = screen.getch()
 
-    screen = bottom_ticker(screen, menuinfo, chapter)
+        if key == curses.KEY_F3:
+            chapter.advance()
 
-    key = screen.getch()
+        elif key == curses.KEY_F4:
+            for x in range(100):
+                chapter.advance()
+                if x % 5 == 0:
+                    display_full_screen(screen, menuinfo, chapter)
+
+        elif key == curses.KEY_F7:
+            print_about(screen)
+
+        elif key == curses.KEY_F8:
+            keepgoing = False
+
+        display_full_screen(screen, menuinfo, chapter)
     
 
 def fluff_menu(chapter):
