@@ -246,6 +246,21 @@ def print_roster(screen, roster, menuinfo):
 
     return screen
 
+def bottom_ticker(screen, menuinfo, chapter):
+    """ This displays the bottom ticker. Used for chapter stats."""
+
+    name = "The " + chapter.name
+    Ticker = "{:^20s}-  Year:{:5d}  Dead: {:<6d}  Honoured: {:<4d}  Starships:1+{}".format(name,
+                                                                                                        chapter.year,
+                                                                                                        chapter.dead_cnt,
+                                                                                                        len(chapter.honoured),
+                                                                                                        len(chapter.assets.fleet) - 1)
+    screen.attron(curses.color_pair(1))
+    h, w = screen.getmaxyx()
+    screen.addstr(h - 1, 0, Ticker)
+    screen.attroff(curses.color_pair(1))
+    return screen
+
 
 def gui(screen, chapter):
     h, w = screen.getmaxyx()
@@ -260,6 +275,8 @@ def gui(screen, chapter):
     roster = get_roster(chapter, menuinfo)
 
     screen = print_roster(screen, roster, menuinfo)
+
+    screen = bottom_ticker(screen, menuinfo, chapter)
 
     key = screen.getch()
     
