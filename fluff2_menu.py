@@ -19,7 +19,6 @@ class cls_menu_info:
         self.show_sargeants =      False
         self.show_lieutenants =    False
         self.show_captains =       True
-
         
         self.show_dreads =         True
         self.show_techmarines =    False
@@ -34,10 +33,27 @@ class cls_menu_info:
         self.show_honour_guards =  False
         self.show_ancients =       False
         self.show_champions =      False
+
+        self.show_command_company = False
+        self.show_vet_company = False
+        self.show_1st_company = True
+        self.show_2nd_company = False
+        self.show_3rd_company = False
+        self.show_4th_company = False
+        self.show_5th_company = False
+        self.show_6th_company = False
+        self.show_7th_company = False
+        self.show_8th_company = False
+        self.show_9th_company = False
+        self.show_10th_company = False
+        self.show_11th_company = False
+        self.show_12th_company = False
+
+
         
     def F6_toggle_menu(self, screen):
         
-        begin_x = 43
+        begin_x = 42
         begin_y = 1
         height = 18
         width = 18
@@ -100,11 +116,92 @@ class cls_menu_info:
                 else:
                     self.rank_dict[self.menu_selection] = True
 
+                if self.menu_selection == 1:
+                    if self.show_captains == True:
+                        self.show_captains = False
+                    else:
+                        self.show_captains = True
+                elif self.menu_selection == 2:
+                    if self.show_lieutenants == True:
+                        self.show_lieutenants = False
+                    else:
+                        self.show_lieutenants = True
+                elif self.menu_selection == 3:
+                    if self.show_sargeants == True:
+                        self.show_sargeants = False
+                    else:
+                        self.show_sargeants = True
+                elif self.menu_selection == 4:
+                    if self.show_troopers == True:
+                        self.show_troopers = False
+                    else:
+                        self.show_troopers = True
+                elif self.menu_selection == 5:
+                    if self.show_dreads == True:
+                        self.show_dreads = False
+                    else:
+                        self.show_dreads = True
+                elif self.menu_selection == 6:
+                    if self.show_techmarines == True:
+                        self.show_techmarines = False
+                    else:
+                        self.show_techmarines = True
+                elif self.menu_selection == 7:
+                    if self.show_jr_techmarines == True:
+                        self.show_jr_techmarines = False
+                    else:
+                        self.show_jr_techmarines = True
+                elif self.menu_selection == 8:
+                    if self.show_apothecaries == True:
+                        self.show_apothecaries = False
+                    else:
+                        self.show_apothecaries = True
+                elif self.menu_selection == 9:
+                    if self.show_nurses == True:
+                        self.show_nurses = False
+                    else:
+                        self.show_nurses = True
+                elif self.menu_selection == 10:
+                    if self.show_chaplains == True:
+                        self.show_chaplains = False
+                    else:
+                        self.show_chaplains = True
+                elif self.menu_selection == 11:
+                    if self.show_jr_chaplains == True:
+                        self.show_jr_chaplains = False
+                    else:
+                        self.show_jr_chaplains = True
+                elif self.menu_selection == 12:
+                    if self.show_lexicanii == True:
+                        self.show_lexicanii = False
+                    else:
+                        self.show_lexicanii = True
+                elif self.menu_selection == 13:
+                    if self.show_adnuntii == True:
+                        self.show_adnuntii = False
+                    else:
+                        self.show_adnuntii = True
+                elif self.menu_selection == 14:
+                    if self.show_honour_guards == True:
+                        self.show_honour_guards = False
+                    else:
+                        self.show_honour_guards = True
+                elif self.menu_selection == 15:
+                    if self.show_ancients == True:
+                        self.show_ancients = False
+                    else:
+                        self.show_ancients = True
+                elif self.menu_selection == 16:
+                    if self.show_champions == True:
+                        self.show_champions = False
+                    else:
+                        self.show_champions = True
+
+
             elif key == curses.KEY_F6:
                 keepgoing = False
         
         return screen
-
     def F6_toggle_menu_update(self, width):
         cnt = 1
         for rank in self.rank_list:
@@ -124,6 +221,109 @@ class cls_menu_info:
                 self.menu_window.attron(curses.color_pair(1))
                 self.menu_window.addstr(cnt, 1, rank)
                 self.menu_window.addstr(cnt, width - 4, button)
+                self.menu_window.attroff(curses.color_pair(1))
+            cnt += 1
+        self.menu_window.attron(curses.color_pair(1))
+        self.menu_window.border()
+        self.menu_window.attroff(curses.color_pair(1))
+        self.menu_window.refresh()
+
+    def F5_toggle_menu(self, screen):
+
+        begin_x = 29
+        begin_y = 1
+        height = 16
+        width = 20
+
+        self.company_list = [" Com - Command ",
+                             " Vet - Veteran ",
+                             " 1st - First   ",
+                             " 2nd - Second  ",
+                             " 3rd - Third   ",
+                             " 4th - Fourth  ",
+                             " 5th - Fifth   ",
+                             " 6th - Sixth   ",
+                             " 7th - Seventh ",
+                             " 8th - Eighth  ",
+                             " 9th - Ninth   ",
+                             "10th - Tenth   ",
+                             "11th - Eleventh",
+                             "12th - Twelfth "]
+        self.company_dict = {-1: self.show_command_company,
+                             0:self.show_vet_company,
+                             1:self.show_1st_company,
+                             2:self.show_2nd_company,
+                             3:self.show_3rd_company,
+                          4:self.show_4th_company,
+                          5:self.show_5th_company,
+                          6:self.show_6th_company,
+                          7:self.show_7th_company,
+                          8:self.show_8th_company,
+                          9:self.show_9th_company,
+                          10:self.show_10th_company,
+                          11:self.show_11th_company,
+                          12:self.show_12th_company}
+
+        self.menu_window = curses.newwin(height, width, begin_y, begin_x)
+        self.menu_selection = -1
+
+        keepgoing = True
+        while keepgoing == True:
+
+            self.F5_toggle_menu_update(width)
+            key = screen.getch()
+            if key == curses.KEY_F2:
+                pass
+
+            elif key == curses.KEY_UP:
+                if self.menu_selection > -1:
+                    self.menu_selection -= 1
+
+            elif key == curses.KEY_DOWN:
+                if self.menu_selection < len(self.company_list):
+                    self.menu_selection += 1
+
+            elif key == curses.KEY_ENTER or key in [10, 13]:
+                if self.company_dict[self.menu_selection] == True:
+                    self.company_dict[self.menu_selection] = False
+                else:
+                    self.company_dict[self.menu_selection] = True
+
+                """if self.menu_selection == 1:
+                    if self.show_captains == True:
+                        self.show_captains = False
+                    else:
+                        self.show_captains = True
+                elif self.menu_selection == 2:
+                    if self.show_lieutenants == True:
+                        self.show_lieutenants = False
+                    else:
+                        self.show_lieutenants = True"""
+
+
+            elif key == curses.KEY_F5:
+                keepgoing = False
+
+        return screen
+    def F5_toggle_menu_update(self, width):
+        cnt = -1
+        for company in self.company_list:
+
+            if self.company_dict[cnt] == True:
+                button = "[X]"
+            else:
+                button = "[ ]"
+
+            if self.menu_selection == cnt:
+                self.menu_window.attron(curses.color_pair(2))
+                self.menu_window.addstr(cnt+2, 1, company)
+                self.menu_window.addstr(cnt+2, width - 4, button)
+                self.menu_window.attroff(curses.color_pair(2))
+
+            else:
+                self.menu_window.attron(curses.color_pair(1))
+                self.menu_window.addstr(cnt+2, 1, company)
+                self.menu_window.addstr(cnt+2, width - 4, button)
                 self.menu_window.attroff(curses.color_pair(1))
             cnt += 1
         self.menu_window.attron(curses.color_pair(1))
@@ -426,6 +626,8 @@ def gui(screen, chapter):
                 if x % 5 == 0:
                     display_full_screen(screen, menuinfo, chapter)
 
+        elif key == curses.KEY_F5:
+            screen = menuinfo.F5_toggle_menu(screen)
         elif key == curses.KEY_F6:
             screen = menuinfo.F6_toggle_menu(screen)
 

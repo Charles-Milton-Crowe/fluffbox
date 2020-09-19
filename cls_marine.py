@@ -104,7 +104,7 @@ class cls_marine:
 			return "Get_Statline: Receiving KIA that is NOT 0,1,2."
 
 	def get_title(self):
-		return "{}, {:>3}".format(self.rank, Get_Letters(self.company_number))
+		return "{}, {:>3}".format(str.capitalize(self.rank), Get_Letters(self.company_number))
 
 	def Toggle_Watchlist(self):
 		if self.watchlist is True:
