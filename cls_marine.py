@@ -44,6 +44,8 @@ class cls_marine:
 		self.rank = rank
 		self.company_number = 13
 
+		self.title = ""
+
 
 
 

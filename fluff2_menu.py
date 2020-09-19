@@ -17,10 +17,11 @@ class cls_menu_info:
 
         self.show_troopers =       False
         self.show_sargeants =      False
-        self.show_lieutenants =    True
+        self.show_lieutenants =    False
         self.show_captains =       True
+
         
-        self.show_dreads =         False
+        self.show_dreads =         True
         self.show_techmarines =    False
         self.show_jr_techmarines = False
         self.show_apothecaries =   False
@@ -33,6 +34,102 @@ class cls_menu_info:
         self.show_honour_guards =  False
         self.show_ancients =       False
         self.show_champions =      False
+        
+    def F6_toggle_menu(self, screen):
+        
+        begin_x = 43
+        begin_y = 1
+        height = 18
+        width = 18
+
+        self.rank_list = ["Captains     ",
+                          "Lieutenants  ",
+                          "Sargeants    ",
+                          "Troopers     ",
+                          "Dreads       ",
+                          "Techmarines  ",
+                          "Jr. Techs    ",
+                          "Apothecaries ",
+                          "Nurses       ",
+                          "Chaplains    ",
+                          "Jr. Chaps    ",
+                          "Lexicanii    ",
+                          "Adnuntii     ",
+                          "Honour_Guards",
+                          "Ancients     ",
+                          "Champions    "]
+        self.rank_dict = {1:self.show_captains,
+                          2:self.show_lieutenants,
+                          3:self.show_sargeants,
+                          4:self.show_troopers,
+                          5:self.show_dreads,
+                          6:self.show_techmarines,
+                          7:self.show_jr_techmarines,
+                          8:self.show_apothecaries,
+                          9:self.show_nurses,
+                          10:self.show_chaplains,
+                          11:self.show_jr_chaplains,
+                          12:self.show_lexicanii,
+                          13:self.show_adnuntii,
+                          14:self.show_honour_guards,
+                          15:self.show_ancients,
+                          16:self.show_champions}
+
+        self.menu_window = curses.newwin(height, width, begin_y, begin_x)
+        self.menu_selection = 1
+
+        keepgoing = True
+        while keepgoing == True:
+
+            self.F6_toggle_menu_update(width)
+            key = screen.getch()
+            if key == curses.KEY_F2:
+                pass
+
+            elif key == curses.KEY_UP:
+                if self.menu_selection > 1:
+                    self.menu_selection -= 1
+
+            elif key == curses.KEY_DOWN:
+                if self.menu_selection < len(self.rank_list):
+                    self.menu_selection += 1
+
+            elif key == curses.KEY_ENTER or key in [10, 13]:
+                if self.rank_dict[self.menu_selection] == True:
+                    self.rank_dict[self.menu_selection] = False
+                else:
+                    self.rank_dict[self.menu_selection] = True
+
+            elif key == curses.KEY_F6:
+                keepgoing = False
+        
+        return screen
+
+    def F6_toggle_menu_update(self, width):
+        cnt = 1
+        for rank in self.rank_list:
+
+            if self.rank_dict[cnt] == True:
+                button = "[X]"
+            else:
+                button = "[ ]"
+
+            if self.menu_selection == cnt:
+                self.menu_window.attron(curses.color_pair(2))
+                self.menu_window.addstr(cnt, 1, rank)
+                self.menu_window.addstr(cnt, width - 4, button)
+                self.menu_window.attroff(curses.color_pair(2))
+
+            else:
+                self.menu_window.attron(curses.color_pair(1))
+                self.menu_window.addstr(cnt, 1, rank)
+                self.menu_window.addstr(cnt, width - 4, button)
+                self.menu_window.attroff(curses.color_pair(1))
+            cnt += 1
+        self.menu_window.attron(curses.color_pair(1))
+        self.menu_window.border()
+        self.menu_window.attroff(curses.color_pair(1))
+        self.menu_window.refresh()
 
 
 def print_about(screen):
@@ -48,6 +145,22 @@ def print_about(screen):
 
     key = screen.getch()
 
+    return screen
+
+def print_transcript(screen, marine):
+    """ This displays the transcript of the currently selected marine."""
+
+    screen.clear()
+
+    #h, w = screen.getmaxyx()
+    screen.addstr(1, 0, "Transcript for {}| Entries {}".format(marine.rank + " " + marine.name, len(marine.transcript)))
+    screen.addstr(2, 0, "--------------------------------------------------------------------------------")
+
+    for Index, line in enumerate(marine.transcript):
+        screen.addstr(Index + 3, 0, marine.transcript[Index])
+
+    key = screen.getch()
+    screen.refresh()
     return screen
 
 
@@ -295,7 +408,7 @@ def gui(screen, chapter):
     curses.curs_set(0)
     curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_WHITE)
     curses.init_pair(2, curses.COLOR_WHITE, curses.COLOR_BLUE)
-    curses.init_pair(3, curses.COLOR_RED, curses.COLOR_BLACK)
+    curses.init_pair(3, curses.COLOR_WHITE, curses.COLOR_BLACK)
     menuinfo = cls_menu_info(h-2)
 
     display_full_screen(screen, menuinfo, chapter)
@@ -313,13 +426,28 @@ def gui(screen, chapter):
                 if x % 5 == 0:
                     display_full_screen(screen, menuinfo, chapter)
 
+        elif key == curses.KEY_F6:
+            screen = menuinfo.F6_toggle_menu(screen)
+
+
         elif key == curses.KEY_F7:
             print_about(screen)
 
         elif key == curses.KEY_F8:
             keepgoing = False
 
+        elif key == curses.KEY_UP:
+            menuinfo.roster_selection -= 1
+
+        elif key == curses.KEY_DOWN:
+            menuinfo.roster_selection += 1
+
+        elif key == curses.KEY_ENTER or key in [10 ,13]:
+            roster = get_roster(chapter, menuinfo)
+            screen = print_transcript(screen, roster[menuinfo.roster_selection])
+
         display_full_screen(screen, menuinfo, chapter)
+        screen.refresh()
     
 
 def fluff_menu(chapter):
