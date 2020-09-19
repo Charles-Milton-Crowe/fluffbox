@@ -17,10 +17,10 @@ class cls_menu_info:
 
         self.show_troopers =       False
         self.show_sargeants =      False
-        self.show_lieutenants =    False
+        self.show_lieutenants =    True
         self.show_captains =       True
         
-        self.show_dreads =         True
+        self.show_dreads =         False
         self.show_techmarines =    False
         self.show_jr_techmarines = False
         self.show_apothecaries =   False
@@ -34,20 +34,20 @@ class cls_menu_info:
         self.show_ancients =       False
         self.show_champions =      False
 
-        self.show_command_company = False
-        self.show_vet_company = False
-        self.show_1st_company = True
-        self.show_2nd_company = False
-        self.show_3rd_company = False
-        self.show_4th_company = False
-        self.show_5th_company = False
-        self.show_6th_company = False
-        self.show_7th_company = False
-        self.show_8th_company = False
-        self.show_9th_company = False
-        self.show_10th_company = False
-        self.show_11th_company = False
-        self.show_12th_company = False
+        self.show_companies = []
+        self.show_companies.append(False) # Vet
+        self.show_companies.append(True)  # 1st
+        self.show_companies.append(True)  # 2
+        self.show_companies.append(True)  # 3
+        self.show_companies.append(False)  # 4
+        self.show_companies.append(False)  # 5
+        self.show_companies.append(False)  # 6
+        self.show_companies.append(False)  # 7
+        self.show_companies.append(False)  # 8
+        self.show_companies.append(False)  # 9
+        self.show_companies.append(False)  # 10
+        self.show_companies.append(False)  # 11
+        self.show_companies.append(False)  # 12
 
 
         
@@ -249,20 +249,6 @@ class cls_menu_info:
                              "10th - Tenth   ",
                              "11th - Eleventh",
                              "12th - Twelfth "]
-        self.company_dict = {-1: self.show_command_company,
-                             0:self.show_vet_company,
-                             1:self.show_1st_company,
-                             2:self.show_2nd_company,
-                             3:self.show_3rd_company,
-                          4:self.show_4th_company,
-                          5:self.show_5th_company,
-                          6:self.show_6th_company,
-                          7:self.show_7th_company,
-                          8:self.show_8th_company,
-                          9:self.show_9th_company,
-                          10:self.show_10th_company,
-                          11:self.show_11th_company,
-                          12:self.show_12th_company}
 
         self.menu_window = curses.newwin(height, width, begin_y, begin_x)
         self.menu_selection = -1
@@ -284,22 +270,10 @@ class cls_menu_info:
                     self.menu_selection += 1
 
             elif key == curses.KEY_ENTER or key in [10, 13]:
-                if self.company_dict[self.menu_selection] == True:
-                    self.company_dict[self.menu_selection] = False
+                if self.show_companies[self.menu_selection] == True:
+                    self.show_companies[self.menu_selection] = False
                 else:
-                    self.company_dict[self.menu_selection] = True
-
-                """if self.menu_selection == 1:
-                    if self.show_captains == True:
-                        self.show_captains = False
-                    else:
-                        self.show_captains = True
-                elif self.menu_selection == 2:
-                    if self.show_lieutenants == True:
-                        self.show_lieutenants = False
-                    else:
-                        self.show_lieutenants = True"""
-
+                    self.show_companies[self.menu_selection] = True
 
             elif key == curses.KEY_F5:
                 keepgoing = False
@@ -309,7 +283,7 @@ class cls_menu_info:
         cnt = -1
         for company in self.company_list:
 
-            if self.company_dict[cnt] == True:
+            if self.show_companies[cnt] == True:
                 button = "[X]"
             else:
                 button = "[ ]"
@@ -416,7 +390,7 @@ def get_roster(chapter, menuinfo):
         for x in range(0 , 13):
             for command in chapter.commands:
                 for company in command.companies:
-                    if company.company_number == x:
+                    if company.company_number == x and menuinfo.show_companies[x] == True:
                         for captain in company.captains:
                             roster.append(captain)
 
@@ -425,7 +399,7 @@ def get_roster(chapter, menuinfo):
         for x in range(0, 13):
             for command in chapter.commands:
                 for company in command.companies:
-                    if company.company_number == x:
+                    if company.company_number == x and menuinfo.show_companies[x] == True:
                         for lieutenant in company.lieutenants:
                             roster.append(lieutenant)
 
@@ -434,7 +408,7 @@ def get_roster(chapter, menuinfo):
         for x in range(0, 13):
             for command in chapter.commands:
                 for company in command.companies:
-                    if company.company_number == x:
+                    if company.company_number == x and menuinfo.show_companies[x] == True:
                         for sargeant in company.sargeants:
                             roster.append(sargeant)
 
@@ -443,7 +417,7 @@ def get_roster(chapter, menuinfo):
         for x in range(0, 13):
             for command in chapter.commands:
                 for company in command.companies:
-                    if company.company_number == x:
+                    if company.company_number == x and menuinfo.show_companies[x] == True:
                         for techmarine in company.techmarines:
                             roster.append(techmarine)
 
@@ -451,7 +425,7 @@ def get_roster(chapter, menuinfo):
         for x in range(0, 13):
             for command in chapter.commands:
                 for company in command.companies:
-                    if company.company_number == x:
+                    if company.company_number == x and menuinfo.show_companies[x] == True:
                         for jr_techmarine in company.jr_techmarines:
                             roster.append(jr_techmarine)
 
@@ -459,7 +433,7 @@ def get_roster(chapter, menuinfo):
         for x in range(0, 13):
             for command in chapter.commands:
                 for company in command.companies:
-                    if company.company_number == x:
+                    if company.company_number == x and menuinfo.show_companies[x] == True:
                         for apothecary in company.apothecaries:
                             roster.append(apothecary)
 
@@ -467,7 +441,7 @@ def get_roster(chapter, menuinfo):
         for x in range(0, 13):
             for command in chapter.commands:
                 for company in command.companies:
-                    if company.company_number == x:
+                    if company.company_number == x and menuinfo.show_companies[x] == True:
                         for nurse in company.nurses:
                             roster.append(nurse)
 
@@ -475,7 +449,7 @@ def get_roster(chapter, menuinfo):
         for x in range(0, 13):
             for command in chapter.commands:
                 for company in command.companies:
-                    if company.company_number == x:
+                    if company.company_number == x and menuinfo.show_companies[x] == True:
                         for chaplain in company.chaplains:
                             roster.append(chaplain)
 
@@ -483,7 +457,7 @@ def get_roster(chapter, menuinfo):
         for x in range(0, 13):
             for command in chapter.commands:
                 for company in command.companies:
-                    if company.company_number == x:
+                    if company.company_number == x and menuinfo.show_companies[x] == True:
                         for jr_chaplain in company.jr_chaplains:
                             roster.append(jr_chaplain)
 
@@ -491,7 +465,7 @@ def get_roster(chapter, menuinfo):
         for x in range(0, 13):
             for command in chapter.commands:
                 for company in command.companies:
-                    if company.company_number == x:
+                    if company.company_number == x and menuinfo.show_companies[x] == True:
                         for lexicanius in company.lexicanii:
                             roster.append(lexicanius)
 
@@ -499,7 +473,7 @@ def get_roster(chapter, menuinfo):
         for x in range(0, 13):
             for command in chapter.commands:
                 for company in command.companies:
-                    if company.company_number == x:
+                    if company.company_number == x and menuinfo.show_companies[x] == True:
                         for adnuntius in company.adnuntii:
                             roster.append(adnuntius)
 
@@ -507,7 +481,7 @@ def get_roster(chapter, menuinfo):
         for x in range(0, 13):
             for command in chapter.commands:
                 for company in command.companies:
-                    if company.company_number == x:
+                    if company.company_number == x and menuinfo.show_companies[x] == True:
                         for dread in company.dreads:
                             roster.append(dread)
 
@@ -516,7 +490,7 @@ def get_roster(chapter, menuinfo):
         for x in range(0, 13):
             for command in chapter.commands:
                 for company in command.companies:
-                    if company.company_number == x:
+                    if company.company_number == x and menuinfo.show_companies[x] == True:
                         for champion in company.champions:
                             roster.append(champion)
 
@@ -525,7 +499,7 @@ def get_roster(chapter, menuinfo):
         for x in range(0, 13):
             for command in chapter.commands:
                 for company in command.companies:
-                    if company.company_number == x:
+                    if company.company_number == x and menuinfo.show_companies[x] == True:
                         for ancient in company.ancients:
                             roster.append(ancient)
 
@@ -534,7 +508,7 @@ def get_roster(chapter, menuinfo):
         for x in range(0, 13):
             for command in chapter.commands:
                 for company in command.companies:
-                    if company.company_number == x:
+                    if company.company_number == x and menuinfo.show_companies[x] == True:
                         for honour_guard in company.honour_guards:
                             roster.append(honour_guard)
 
@@ -543,7 +517,7 @@ def get_roster(chapter, menuinfo):
         for x in range(0, 13):
             for command in chapter.commands:
                 for company in command.companies:
-                    if company.company_number == x:
+                    if company.company_number == x and menuinfo.show_companies[x] == True:
                         for trooper in company.troopers:
                             roster.append(trooper)
 

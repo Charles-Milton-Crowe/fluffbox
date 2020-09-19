@@ -16,17 +16,17 @@ def Get_Letters(num):
         if num == 11:
             return str("{:2}th".format(num))
         else:
-            return str(num) + "st"
+            return str("{:2}st".format(num))
     elif num == 2 or num % 10 == 2:
         if num == 12:
             return str("{:2}th".format(num))
         else:
-            return str(num) + "nd"
+            return str("{:2}nd".format(num))
     elif num == 3 or num % 10 == 3:
         if num == 13:
             return str("{:2}th".format(num))
         else:
-            return str(num) + "rd"
+            return str("{:2}rd".format(num))
     elif num >= 4:
         return str("{:2}th".format(num))
 
