@@ -404,149 +404,110 @@ def get_roster(chapter, menuinfo):
 
     company_list = []
 
-    company_list.append(chapter.veteran_company)
+    if menuinfo.show_companies[0] == True:
+        company_list.append(chapter.veteran_company)
 
     for x in range(0, 13):
-        for command in chapter.commands:
-            for company in command.companies:
-                if company.company_number == x:
-                    company_list.append(company)
+        if menuinfo.show_companies[x] == True:
+            for command in chapter.commands:
+                for company in command.companies:
+                    if company.company_number == x:
+                        company_list.append(company)
 
     # Captains
     if menuinfo.show_captains == True:
-        for x in range(0 , 13):
-            for command in chapter.commands:
-                for company in command.companies:
-                    if company.company_number == x and menuinfo.show_companies[x] == True:
-                        for captain in company.captains:
-                            roster.append(captain)
+        for company in company_list:
+            for captain in company.captains:
+                roster.append(captain)
 
     # Lieutenants
     if menuinfo.show_lieutenants == True:
-        for x in range(0, 13):
-            for command in chapter.commands:
-                for company in command.companies:
-                    if company.company_number == x and menuinfo.show_companies[x] == True:
-                        for lieutenant in company.lieutenants:
-                            roster.append(lieutenant)
+        for company in company_list:
+            for lieutenant in company.lieutenants:
+                roster.append(lieutenant)
 
     # Sargeants
     if menuinfo.show_sargeants == True:
-        for x in range(0, 13):
-            for command in chapter.commands:
-                for company in command.companies:
-                    if company.company_number == x and menuinfo.show_companies[x] == True:
-                        for sargeant in company.sargeants:
-                            roster.append(sargeant)
+        for company in company_list:
+            for sargeant in company.sargeants:
+                roster.append(sargeant)
 
     # Dreads
+    if menuinfo.show_dreads == True:
+        for company in company_list:
+            for dread in company.dreads:
+                roster.append(dread)
+
+    # Techmarine
     if menuinfo.show_techmarines == True:
-        for x in range(0, 13):
-            for command in chapter.commands:
-                for company in command.companies:
-                    if company.company_number == x and menuinfo.show_companies[x] == True:
-                        for techmarine in company.techmarines:
-                            roster.append(techmarine)
+        for company in company_list:
+            for techmarine in company.techmarines:
+                roster.append(techmarine)
 
+    # Jr_Techmarines
     if menuinfo.show_jr_techmarines == True:
-        for x in range(0, 13):
-            for command in chapter.commands:
-                for company in command.companies:
-                    if company.company_number == x and menuinfo.show_companies[x] == True:
-                        for jr_techmarine in company.jr_techmarines:
-                            roster.append(jr_techmarine)
+        for company in company_list:
+            for jr_techmarine in company.jr_techmarines:
+                roster.append(jr_techmarine)
 
+    # Apothecaries
     if menuinfo.show_apothecaries == True:
-        for x in range(0, 13):
-            for command in chapter.commands:
-                for company in command.companies:
-                    if company.company_number == x and menuinfo.show_companies[x] == True:
-                        for apothecary in company.apothecaries:
-                            roster.append(apothecary)
+        for company in company_list:
+            for apothecary in company.apothecaries:
+                roster.append(apothecary)
 
+    # Nurses
     if menuinfo.show_nurses == True:
-        for x in range(0, 13):
-            for command in chapter.commands:
-                for company in command.companies:
-                    if company.company_number == x and menuinfo.show_companies[x] == True:
-                        for nurse in company.nurses:
-                            roster.append(nurse)
+        for company in company_list:
+            for nurse in company.nurses:
+                roster.append(nurse)
 
+    # Chaplains
     if menuinfo.show_chaplains == True:
-        for x in range(0, 13):
-            for command in chapter.commands:
-                for company in command.companies:
-                    if company.company_number == x and menuinfo.show_companies[x] == True:
-                        for chaplain in company.chaplains:
-                            roster.append(chaplain)
+        for company in company_list:
+            for chaplain in company.chaplains:
+                roster.append(chaplain)
 
+    # Jr_Chaplains
     if menuinfo.show_jr_chaplains == True:
-        for x in range(0, 13):
-            for command in chapter.commands:
-                for company in command.companies:
-                    if company.company_number == x and menuinfo.show_companies[x] == True:
-                        for jr_chaplain in company.jr_chaplains:
-                            roster.append(jr_chaplain)
+        for company in company_list:
+            for jr_chaplain in company.jr_chaplains:
+                roster.append(jr_chaplain)
 
+    # Lexicanii
     if menuinfo.show_lexicanii == True:
-        for x in range(0, 13):
-            for command in chapter.commands:
-                for company in command.companies:
-                    if company.company_number == x and menuinfo.show_companies[x] == True:
-                        for lexicanius in company.lexicanii:
-                            roster.append(lexicanius)
+        for company in company_list:
+            for lexicanius in company.lexicanii:
+                roster.append(lexicanius)
 
     if menuinfo.show_adnuntii == True:
-        for x in range(0, 13):
-            for command in chapter.commands:
-                for company in command.companies:
-                    if company.company_number == x and menuinfo.show_companies[x] == True:
-                        for adnuntius in company.adnuntii:
-                            roster.append(adnuntius)
-
-    if menuinfo.show_dreads == True:
-        for x in range(0, 13):
-            for command in chapter.commands:
-                for company in command.companies:
-                    if company.company_number == x and menuinfo.show_companies[x] == True:
-                        for dread in company.dreads:
-                            roster.append(dread)
+        for company in company_list:
+            for adnuntius in company.adnuntii:
+                roster.append(adnuntius)
 
     # Champions
     if menuinfo.show_champions == True:
-        for x in range(0, 13):
-            for command in chapter.commands:
-                for company in command.companies:
-                    if company.company_number == x and menuinfo.show_companies[x] == True:
-                        for champion in company.champions:
-                            roster.append(champion)
+        for company in company_list:
+            for champion in company.champions:
+                roster.append(champion)
 
     # Ancients
     if menuinfo.show_ancients == True:
-        for x in range(0, 13):
-            for command in chapter.commands:
-                for company in command.companies:
-                    if company.company_number == x and menuinfo.show_companies[x] == True:
-                        for ancient in company.ancients:
-                            roster.append(ancient)
+        for company in company_list:
+            for ancient in company.ancients:
+                roster.append(ancient)
 
     # Honour Guards
     if menuinfo.show_honour_guards == True:
-        for x in range(0, 13):
-            for command in chapter.commands:
-                for company in command.companies:
-                    if company.company_number == x and menuinfo.show_companies[x] == True:
-                        for honour_guard in company.honour_guards:
-                            roster.append(honour_guard)
+        for company in company_list:
+            for honour_guard in company.honour_guards:
+                roster.append(honour_guard)
 
     # Troopers
     if menuinfo.show_troopers == True:
-        for x in range(0, 13):
-            for command in chapter.commands:
-                for company in command.companies:
-                    if company.company_number == x and menuinfo.show_companies[x] == True:
-                        for trooper in company.troopers:
-                            roster.append(trooper)
+        for company in company_list:
+            for trooper in company.troopers:
+                roster.append(trooper)
 
     return roster
 
