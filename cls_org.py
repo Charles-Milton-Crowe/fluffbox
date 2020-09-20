@@ -89,7 +89,7 @@ class cls_chapter:
 
     def display_commands(self):
         """ Displays the org framework in a much more user friendly way."""
-        print("\nChapter Org Display\n".format())
+        print("\nChapter Org Display".format())
         print("[Name of Company]            [Recruitment Source]")
         print("-------------------------------------------------")
         print("{:25} <- {}, {}, {}".format(self.veteran_company.name,

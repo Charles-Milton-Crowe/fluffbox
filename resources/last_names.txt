@@ -1,7 +1,7 @@
 # Lines starting with "\n"(newline), or # are stripped from this file upon load.
 
 # These are the first names for 6 first founding chapters that are codex compliant.
-# Anything you put here on a line will be added to the program as a first name possibility.
+# Anything you put here on a line will be added to the program as a last name possibility.
 
 # Ultramarines
 Maximus

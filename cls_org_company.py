@@ -12,7 +12,6 @@ from random import randint as rand
 class cls_chapter_command:
 
     def __init__(self, input_company):
-        print("Initializing Chapter Command".format())
         self.chapter_master = []
         self.commanders = []
 
