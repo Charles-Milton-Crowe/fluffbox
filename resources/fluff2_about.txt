@@ -1,0 +1,19 @@
+Commands
+.
+F3 - Advances the chapter in time by 1 decade.
+F4 - Advances the chapter in time by 1 millenium.
+F5 - Dropdown toggle menu for showing companies.
+F6 - Dropdown toggle menu for showing ranks.
+F7 - Presents this page.
+F8 - Closes the program.
+.
+[Enter]    - Displays the transcript for the currently selected marine.
+.
+(In Progress)
+[Space]    - Toggle the watchlist mode of the currently selected marine.
+[Up/Down]  - Changes the currently slected marine.
+[Home/End] - Goto Start and Finish of selected roster.
+.
+This program places 2 files in the /records/ folder upon termination.
+    /records/Tournament_of_Blades - A Verbose record of each match held from round 6 on.
+    /records/Tournament_Recap     - A list of tourny winners.

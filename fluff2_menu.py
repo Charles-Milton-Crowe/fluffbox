@@ -39,9 +39,9 @@ class cls_menu_info:
         self.show_companies.append(True)  # 1st
         self.show_companies.append(True)  # 2
         self.show_companies.append(True)  # 3
-        self.show_companies.append(False)  # 4
-        self.show_companies.append(False)  # 5
-        self.show_companies.append(False)  # 6
+        self.show_companies.append(True)  # 4
+        self.show_companies.append(True)  # 5
+        self.show_companies.append(True)  # 6
         self.show_companies.append(False)  # 7
         self.show_companies.append(False)  # 8
         self.show_companies.append(False)  # 9
@@ -306,17 +306,21 @@ class cls_menu_info:
         self.menu_window.refresh()
 
 
-def print_about(screen):
+def print_about(screen, menuinfo, chapter):
     """ This prints the  file resources/about.txt"""
 
     screen.clear()
 
-    about = Load_Namefile("resources/about.txt")
+    about = Load_Namefile("resources/fluff2_about.txt")
+
+    screen.clear()
+    screen = top_ticker(screen, menuinfo)
+
     for Index, line in enumerate(about):
-        screen.addstr(Index + 2, 0, about[Index])
+        screen.addstr(Index+1, 0, about[Index])
 
+    screen = bottom_ticker(screen, menuinfo, chapter)
     screen.refresh()
-
     key = screen.getch()
 
     return screen
@@ -339,8 +343,8 @@ def print_transcript(screen, marine):
 
 
 def top_ticker(screen, menuinfo):
-    menu = ['[F3]-Chapter',
-            '[F4]-Command',
+    menu = ['[F3]-10yrADV',
+            '[F4]-Advance',
             '[F5]-Company',
             '[F6]-Filters']
 
@@ -350,15 +354,24 @@ def top_ticker(screen, menuinfo):
 
     if menuinfo.echelon == 0:
         screen.attron(curses.color_pair(2))
-        screen.addstr(0, 3, menu[0])
+        screen.addstr(0, 0, "->")
         screen.attroff(curses.color_pair(2))
     else:
         screen.attron(curses.color_pair(1))
-        screen.addstr(0, 3, menu[0])
+        screen.addstr(0, 0, "->")
         screen.attroff(curses.color_pair(1))
 
     if menuinfo.echelon == 1:
         screen.attron(curses.color_pair(2))
+        screen.addstr(0, 3, menu[0])
+        screen.attroff(curses.color_pair(2))
+    else:
+        screen.attron(curses.color_pair(1))
+        screen.addstr(0, 3, menu[0])
+        screen.attroff(curses.color_pair(1))
+
+    if menuinfo.echelon == 2:
+        screen.attron(curses.color_pair(2))
         screen.addstr(0, 16, menu[1])
         screen.attroff(curses.color_pair(2))
     else:
@@ -366,7 +379,7 @@ def top_ticker(screen, menuinfo):
         screen.addstr(0, 16, menu[1])
         screen.attroff(curses.color_pair(1))
 
-    if menuinfo.echelon == 2:
+    if menuinfo.echelon == 3:
         screen.attron(curses.color_pair(2))
         screen.addstr(0, 29, menu[2])
         screen.attroff(curses.color_pair(2))
@@ -375,9 +388,14 @@ def top_ticker(screen, menuinfo):
         screen.addstr(0, 29, menu[2])
         screen.attroff(curses.color_pair(1))
 
-    screen.attron(curses.color_pair(1))
-    screen.addstr(0, 42, menu[3])
-    screen.attroff(curses.color_pair(1))
+    if menuinfo.echelon == 4:
+        screen.attron(curses.color_pair(2))
+        screen.addstr(0, 42, menu[3])
+        screen.attroff(curses.color_pair(2))
+    else:
+        screen.attron(curses.color_pair(1))
+        screen.addstr(0, 42, menu[3])
+        screen.attroff(curses.color_pair(1))
 
     return screen
 
@@ -536,7 +554,7 @@ def print_roster(screen, roster, menuinfo):
         High = menuinfo.height
 
     # Display in [Selected], [Watchlist], or [Normal] colour modes.
-    for x in range(0, High, +1):
+    for x in range(0, High + 1, +1):
         if menuinfo.roster_selection == x:
             screen.attron(curses.color_pair(2))
             screen.addstr(x+1, 0, roster[x+menuinfo.index].C_Get_Statline())
@@ -595,19 +613,29 @@ def gui(screen, chapter):
             chapter.advance()
 
         elif key == curses.KEY_F4:
+            menuinfo.echelon = 2
             for x in range(100):
                 chapter.advance()
                 if x % 5 == 0:
                     display_full_screen(screen, menuinfo, chapter)
+            menuinfo.echelon = 0
 
         elif key == curses.KEY_F5:
+            menuinfo.echelon = 3
+            display_full_screen(screen, menuinfo, chapter)
+            screen.refresh()
             screen = menuinfo.F5_toggle_menu(screen)
+            menuinfo.echelon = 0
         elif key == curses.KEY_F6:
+            menuinfo.echelon = 4
+            display_full_screen(screen, menuinfo, chapter)
+            screen.refresh()
             screen = menuinfo.F6_toggle_menu(screen)
+            menuinfo.echelon = 0
 
 
         elif key == curses.KEY_F7:
-            print_about(screen)
+            print_about(screen, menuinfo, chapter)
 
         elif key == curses.KEY_F8:
             keepgoing = False
@@ -621,6 +649,10 @@ def gui(screen, chapter):
         elif key == curses.KEY_ENTER or key in [10 ,13]:
             roster = get_roster(chapter, menuinfo)
             screen = print_transcript(screen, roster[menuinfo.roster_selection])
+
+        elif key == ord(' '):
+            roster = get_roster(chapter, menuinfo)
+            roster[menuinfo.roster_selection].Toggle_Watchlist()
 
         display_full_screen(screen, menuinfo, chapter)
         screen.refresh()
