@@ -402,6 +402,15 @@ def top_ticker(screen, menuinfo):
 def get_roster(chapter, menuinfo):
     roster = []
 
+    company_list = []
+
+    company_list.append(chapter.veteran_company)
+
+    for x in range(0, 13):
+        for command in chapter.commands:
+            for company in command.companies:
+                if company.company_number == x:
+                    company_list.append(company)
 
     # Captains
     if menuinfo.show_captains == True:

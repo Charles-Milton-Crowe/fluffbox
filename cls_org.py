@@ -161,16 +161,12 @@ class cls_chapter:
         for command in self.commands:
             for company in command.companies:
                 company.year += 10
-                company.set_company_numbers()
-
-
 
         self.veteran_company.reinforce()
-        ticker = "{:^20s} - Yr: {}, Dead: {}, Honoured: {}".format(self.name,
-                                                                   self.year,
-                                                                   self.dead_cnt,
-                                                                   len(self.honoured))
-        print(ticker)
+
+        for command in self.commands:
+            for company in command.companies:
+                company.set_company_numbers()
 
     def pop_assets(self):
         """ This builds the initial Assets of the Chapter in the initialization sequence. Used once.
@@ -235,16 +231,3 @@ class cls_chapter:
         for command in self.commands:
             for company in command.companies:
                 company.age_company()
-
-
-
-
-
-
-
-
-
-
-
-
-
