@@ -407,11 +407,10 @@ def top_ticker(screen, menuinfo, roster_length):
 
 def get_roster(chapter, menuinfo):
     roster = []
+    company_list = []
 
     if menuinfo.honour_toggle == True:
         return chapter.honoured
-
-    company_list = []
 
     if menuinfo.show_companies[0] == True:
         company_list.append(chapter.veteran_company)

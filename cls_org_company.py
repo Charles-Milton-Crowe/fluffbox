@@ -374,9 +374,11 @@ class cls_company:
         for marine in self.butchers_bill:
             if self.ranknum_dict[marine.rank] == 1 and len(marine.badges.badges) > 3:
                 self.honoured.append(marine)
-            elif self.ranknum_dict[marine.rank] == 2 and len(marine.badges.badges) > 2:
+            elif self.ranknum_dict[marine.rank] == 2 and len(marine.badges.badges) > 3:
                 self.honoured.append(marine)
-            elif self.ranknum_dict[marine.rank] <= 4 and len(marine.badges.badges) > 1:
+            elif self.ranknum_dict[marine.rank] == 3 and len(marine.badges.badges) > 2:
+                self.honoured.append(marine)
+            elif self.ranknum_dict[marine.rank] == 4 and len(marine.badges.badges) > 2:
                 self.honoured.append(marine)
 
     def age_company(self):

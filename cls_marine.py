@@ -46,11 +46,6 @@ class cls_marine:
 
 		self.title = ""
 
-
-
-
-
-
 		self.age = self.settings.MARINE_START_AGE
 		self.servicelength = 0
 		self.KIA = 0
