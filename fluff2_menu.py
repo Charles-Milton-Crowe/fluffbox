@@ -658,6 +658,13 @@ def gui(screen, chapter):
                 menuinfo.roster_selection = menuinfo.index + menuinfo.height - 1
                 menuinfo.index = (roster_length) - (menuinfo.height)
 
+        elif key == curses.KEY_PPAGE:
+            menuinfo.index -= menuinfo.height
+            menuinfo.roster_selection = 0
+
+            if menuinfo.index < 0:
+                menuinfo.index = 0
+
         elif key == curses.KEY_NPAGE:
             if menuinfo.height > roster_length:
                 menuinfo.roster_selection = roster_length - 1
