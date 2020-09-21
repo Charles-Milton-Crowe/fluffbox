@@ -14,7 +14,6 @@ class cls_menu_info:
         self.index = 0
         self.roster_selection = 0
 
-
         self.show_troopers =       False
         self.show_sargeants =      False
         self.show_lieutenants =    True
@@ -48,7 +47,6 @@ class cls_menu_info:
         self.show_companies.append(False)  # 10
         self.show_companies.append(False)  # 11
         self.show_companies.append(False)  # 12
-
 
         
     def F6_toggle_menu(self, screen):
@@ -623,7 +621,7 @@ def gui(screen, chapter):
         ####################################################################
 
         elif key == curses.KEY_UP:
-            if menuinfo.roster_selection > 0:
+            if menuinfo.roster_selection > 0 or menuinfo.index > 0:
                 if menuinfo.roster_selection < 4 and menuinfo.index > 0:
                     menuinfo.index -= 1
                 else:
@@ -659,6 +657,16 @@ def gui(screen, chapter):
             else:
                 menuinfo.roster_selection = menuinfo.index + menuinfo.height - 1
                 menuinfo.index = (roster_length) - (menuinfo.height)
+
+        elif key == curses.KEY_NPAGE:
+            if menuinfo.height > roster_length:
+                menuinfo.roster_selection = roster_length - 1
+            else:
+                menuinfo.index += menuinfo.height
+                if menuinfo.index > (roster_length - 1) - (menuinfo.height - 1):
+                    menuinfo.index = (roster_length) - (menuinfo.height)
+                    menuinfo.roster_selection = menuinfo.height - 1
+
 
         """elif key == ord(' '):
             roster = get_roster(chapter, menuinfo)
