@@ -277,6 +277,7 @@ class cls_company:
     def roll_fate(self):
         """ Rolls the fate of every marine in the company"""
 
+        self.honoured = []
         self.butchers_bill = []
         self.dead_cnt = 0
 
@@ -306,6 +307,8 @@ class cls_company:
                 if rand(1, self.fateroll_dict[marine.rank]) == 1:
                     self.dead_cnt += 1
                     marine.KIA = 1
+
+                    marine.transcript.append("{}: KIA.".format(self.year))
 
                     # Dreadnought immersion -AVAILABILTY- is Dreadchance[based on rank] in Dread Chance Max
                     if (rand(1 ,self.SETTINGS.DREADCHANCEMAX) > self.dreadchance_dict[marine.rank]) \
@@ -361,7 +364,6 @@ class cls_company:
 
         # forward all fowarded and created Dread potentials to input company
         for marine in self.dread_potentials:
-            #print(self.name)
             if self.multi_input_mode == False:
                 self.input_company.dread_potentials.append(marine)
             else:
@@ -380,7 +382,6 @@ class cls_company:
                 self.honoured.append(marine)
 
     def age_company(self):
-        #print(self.name + ": Aging...")
         for type in ('trooper', 'sargeant', 'lieutenant', 'captain',
                  'dread', 'jr_techmarine' ,'techmarine', 'nurse', 'apothecary',
                  'jr_chaplain', 'chaplain',  'adnuntius', 'lexicanium',
@@ -390,7 +391,6 @@ class cls_company:
 
                 for x in range(self.starting_age_dict[type]):
                     marine.Advance_Age(self.year)
-                #print("{} {}".format(marine,marine.age))
 
     def get_name(self):
 

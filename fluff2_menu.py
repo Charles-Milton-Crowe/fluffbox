@@ -48,6 +48,7 @@ class cls_menu_info:
         self.show_companies.append(False)  # 11
         self.show_companies.append(False)  # 12
 
+        self.honour_toggle = False
         
     def F6_toggle_menu(self, screen):
         
@@ -407,6 +408,9 @@ def top_ticker(screen, menuinfo, roster_length):
 def get_roster(chapter, menuinfo):
     roster = []
 
+    if menuinfo.honour_toggle == True:
+        return chapter.honoured
+
     company_list = []
 
     if menuinfo.show_companies[0] == True:
@@ -586,6 +590,12 @@ def gui(screen, chapter):
     while keepgoing:
         roster_length = len(get_roster(chapter, menuinfo))
         key = screen.getch()
+
+        if key == curses.KEY_F2:
+            if menuinfo.honour_toggle == True:
+                menuinfo.honour_toggle = False
+            else:
+                menuinfo.honour_toggle = True
 
         if key == curses.KEY_F3:
             chapter.advance()

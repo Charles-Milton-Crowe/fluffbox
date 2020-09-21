@@ -132,11 +132,10 @@ class cls_chapter:
     def roll_fate(self):
         """ Calls roll_fate in veteran company and then in each command."""
 
-        #print("Chapter fate_roll()")
-
         self.veteran_company.roll_fate()
         self.dead_cnt += self.veteran_company.dead_cnt
         for marine in self.veteran_company.honoured:
+            marine.epitaph = self.get_epitaph()
             self.honoured.append(marine)
 
         for command in self.commands:
