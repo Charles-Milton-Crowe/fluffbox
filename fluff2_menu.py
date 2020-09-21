@@ -318,7 +318,7 @@ def print_about(screen, menuinfo, chapter):
     about = Load_Namefile("resources/fluff2_about.txt")
 
     screen.clear()
-    screen = top_ticker(screen, menuinfo)
+    screen = top_ticker(screen, menuinfo, len(get_roster(chapter, menuinfo)))
 
     for Index, line in enumerate(about):
         screen.addstr(Index+1, 0, about[Index])
