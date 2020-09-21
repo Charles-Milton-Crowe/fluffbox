@@ -46,6 +46,6 @@ from fluff2_menu import fluff_menu
 
 chapter = cls_chapter("Chapter Crusade Fleet")
 
-chapter.display_commands()
-input()
+#chapter.display_commands()
+#input()
 fluff_menu(chapter)
