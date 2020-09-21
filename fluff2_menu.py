@@ -16,9 +16,9 @@ class cls_menu_info:
 
 
         self.show_troopers =       False
-        self.show_sargeants =      True
-        self.show_lieutenants =    False
-        self.show_captains =       False
+        self.show_sargeants =      False
+        self.show_lieutenants =    True
+        self.show_captains =       True
         
         self.show_dreads =         False
         self.show_techmarines =    False
@@ -38,10 +38,10 @@ class cls_menu_info:
         self.show_companies.append(False) # Vet
         self.show_companies.append(True)  # 1st
         self.show_companies.append(True)  # 2
-        self.show_companies.append(False)  # 3
-        self.show_companies.append(False)  # 4
-        self.show_companies.append(False)  # 5
-        self.show_companies.append(False)  # 6
+        self.show_companies.append(True)  # 3
+        self.show_companies.append(True)  # 4
+        self.show_companies.append(True)  # 5
+        self.show_companies.append(True)  # 6
         self.show_companies.append(False)  # 7
         self.show_companies.append(False)  # 8
         self.show_companies.append(False)  # 9
@@ -528,10 +528,10 @@ def print_roster(screen, roster, menuinfo):
     if len(roster) < h-2:
         High = len(roster)-1
     else:
-        High = menuinfo.height
+        High = menuinfo.height -1
 
     # Display in [Selected], [Watchlist], or [Normal] colour modes.
-    for x in range(0, High, +1):
+    for x in range(0, High + 1, +1):
         if menuinfo.roster_selection == x:
             screen.attron(curses.color_pair(2))
             screen.addstr(x + 1, 0, roster[x + menuinfo.index].C_Get_Statline())
@@ -638,9 +638,10 @@ def gui(screen, chapter):
                 else:
                     menuinfo.roster_selection += 1
 
-            if menuinfo.index > (roster_length - menuinfo.height):
-                menuinfo.index -= 1
-                menuinfo.roster_selection += 1
+                if menuinfo.index > (roster_length - menuinfo.height) and roster_length > menuinfo.height:
+                    menuinfo.index -= 1
+                    menuinfo.roster_selection += 1
+
 
         elif key == curses.KEY_ENTER or key in [10 ,13]:
             roster = get_roster(chapter, menuinfo)
