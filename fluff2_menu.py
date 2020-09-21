@@ -670,6 +670,7 @@ def gui(screen, chapter):
                 menuinfo.roster_selection = roster_length - 1
             else:
                 menuinfo.index += menuinfo.height
+                menuinfo.roster_selection = 25
                 if menuinfo.index > (roster_length - 1) - (menuinfo.height - 1):
                     menuinfo.index = (roster_length) - (menuinfo.height)
                     menuinfo.roster_selection = menuinfo.height - 1
