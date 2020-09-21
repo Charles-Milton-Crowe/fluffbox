@@ -433,6 +433,8 @@ class cls_marine_generator:
 
         self.dread_potentials = []
 
+        self.year = 40000
+
 
     def marine_requested(self, selected_type):
         """ This does all the magic"""
@@ -461,10 +463,13 @@ class cls_marine_generator:
 
         elif type_dict[selected_type] == 2:
             marine = self.sp_input_company.marine_requested('trooper')
+            marine.transcript.append("{:d}: Earned the rank of Sargeant.".format(self.year))
         elif type_dict[selected_type] == 3:
             marine = self.sp_input_company.marine_requested('sargeant')
+            marine.transcript.append("{:d}: Earned the rank of Lieutenant.".format(self.year))
         elif type_dict[selected_type] == 4:
             marine = self.sp_input_company.marine_requested('lieutenant')
+            marine.transcript.append("{:d}: Earned the rank of Captain.".format(self.year))
 
 
         elif type_dict[selected_type] == 5:
@@ -478,26 +483,37 @@ class cls_marine_generator:
 
         elif type_dict[selected_type] == 6:
             marine = self.sp_input_company.marine_requested('jr_techmarine')
+            marine.transcript.append("{:d}: Earned the rank of Tech-Marine.".format(self.year))
         elif type_dict[selected_type] == 7:
             marine = self.sp_input_company.marine_requested('trooper')
+            marine.transcript.append("{:d}: Earned the rank of Jr. Tech-Marine.".format(self.year))
         elif type_dict[selected_type] == 8:
             marine = self.sp_input_company.marine_requested('nurse')
+            marine.transcript.append("{:d}: Earned the rank of Apothecary.".format(self.year))
         elif type_dict[selected_type] == 9:
             marine = self.sp_input_company.marine_requested('trooper')
+            marine.transcript.append("{:d}: Earned the rank of Nurse.".format(self.year))
         elif type_dict[selected_type] ==10:
             marine = self.sp_input_company.marine_requested('jr_chaplain')
+            marine.transcript.append("{:d}: Earned the rank of Chaplain.".format(self.year))
         elif type_dict[selected_type] ==11:
             marine = self.sp_input_company.marine_requested('trooper')
+            marine.transcript.append("{:d}: Earned the rank of Jr. Chaplain.".format(self.year))
         elif type_dict[selected_type] ==12:
             marine = self.sp_input_company.marine_requested('adnuntius')
+            marine.transcript.append("{:d}: Earned the rank of Lexicanium.".format(self.year))
         elif type_dict[selected_type] ==13:
             marine = self.sp_input_company.marine_requested('trooper')
+            marine.transcript.append("{:d}: Earned the rank of Adnuntius.".format(self.year))
         elif type_dict[selected_type] ==14:
             marine = self.sp_input_company.marine_requested('trooper')
+            marine.transcript.append("{:d}: Earned the rank of Honour-Guard.".format(self.year))
         elif type_dict[selected_type] ==15:
             marine = self.sp_input_company.marine_requested('honour_guard')
+            marine.transcript.append("{:d}: Earned the rank of Ancient.".format(self.year))
         elif type_dict[selected_type] ==16:
             marine = self.sp_input_company.marine_requested('ancient')
+            marine.transcript.append("{:d}: Earned the rank of Champion.".format(self.year))
 
         marine.rank = selected_type
         return marine

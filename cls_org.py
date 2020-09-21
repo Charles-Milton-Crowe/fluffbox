@@ -162,6 +162,8 @@ class cls_chapter:
             for company in command.companies:
                 company.year += 10
 
+        self.scout_source.year += 10
+
         self.veteran_company.reinforce()
 
         for command in self.commands:
