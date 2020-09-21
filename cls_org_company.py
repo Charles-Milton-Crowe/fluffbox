@@ -276,7 +276,6 @@ class cls_company:
 
     def roll_fate(self):
         """ Rolls the fate of every marine in the company"""
-        #print("Company fate_roll()" + self.name)
 
         self.butchers_bill = []
         self.dead_cnt = 0
@@ -291,17 +290,22 @@ class cls_company:
             # For each marine in that rank..
 
             for marine in self.rank[type]:
-
                 marine.Advance_Age(self.year)
-                #print(type + marine.rank)
 
+                if rand(1, 200) == 1:
+                    marine.transcript.append("{}: Medal Awarded for Valour.".format(self.year))
+                    marine.badges.add_badge("V", "Medal for Valour", "Yellow")
+                    marine.xfactor += 3
+
+                if rand(1, 150) == 1:
+                    marine.transcript.append("{}: Bolter Discipline Medal awarded for marksmanship.".format(self.year))
+                    marine.badges.add_badge("B", "Bolter Discipline", "Red")
 
                 # Death is a 1 in X chance, where X is dependent on the given marines
                 # rank. These values are stores in the SETTINGS for the company.
                 if rand(1, self.fateroll_dict[marine.rank]) == 1:
                     self.dead_cnt += 1
                     marine.KIA = 1
-                    #print(marine.C_Get_Statline())
 
                     # Dreadnought immersion -AVAILABILTY- is Dreadchance[based on rank] in Dread Chance Max
                     if (rand(1 ,self.SETTINGS.DREADCHANCEMAX) > self.dreadchance_dict[marine.rank]) \
