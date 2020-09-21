@@ -1,5 +1,6 @@
 Commands
 .
+F2 - Toggles the Honour Roll
 F3 - Advances the chapter in time by 1 decade.
 F4 - Advances the chapter in time by 1 millenium.
 F5 - Dropdown toggle menu for showing companies.
@@ -7,9 +8,10 @@ F6 - Dropdown toggle menu for showing ranks.
 F7 - Presents this page.
 F8 - Closes the program.
 .
-[Enter]    - Displays the transcript for the currently selected marine.
-[Up/Down]  - Changes the currently slected marine.
-[Home/End] - Goto Start and Finish of selected roster.
+[Enter]     - Displays the transcript for the currently selected marine.
+[Up/Down]   - Changes the currently slected marine.
+[Home/End]  - Goto the Start and Finish of selected roster.
+[PgUp/PgDn] - Moves up and down the roster by the viewable height.
 .
 (In Progress)
 [Space]    - Toggle the watchlist mode of the currently selected marine.

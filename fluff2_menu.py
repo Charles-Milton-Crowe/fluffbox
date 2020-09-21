@@ -597,6 +597,9 @@ def gui(screen, chapter):
             else:
                 menuinfo.honour_toggle = True
 
+            menuinfo.roster_selection = 0
+            menuinfo.index = 0
+
         if key == curses.KEY_F3:
             chapter.advance()
 

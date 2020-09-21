@@ -14,9 +14,7 @@ class cls_chapter_command:
     def __init__(self, input_company):
         self.chapter_master = []
         self.commanders = []
-
         self.input_company = input_company
-
 
     def init_command(self):
         while len(self.commanders) < 3:
