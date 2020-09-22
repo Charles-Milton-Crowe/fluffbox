@@ -231,7 +231,9 @@ class cls_chapter:
         else:
             string = self.complex_epitaphs[rand(0, len(self.complex_epitaphs) - 1)]
             new_string = string.split("#", )
-            return new_string[0] + " " + new_string[rand(1, len(new_string) - 1)] + "."
+
+            return_string = new_string[0] + " " + new_string[rand(1, len(new_string) - 1)] + "."
+            return (return_string.capitalize())
     
     def age_chapter(self):
         """ This will age the founding chapter members the appropriate ammount."""
