@@ -113,4 +113,4 @@ class cls_marine:
 		return self.Dread_Status
 
 	def __str__(self):
-		return ":{:30}| {:30}:KIA({})".format(self.get_title(), self.name, self.KIA)
+		return "{:>20} | {:30}".format(self.get_title(), self.name)

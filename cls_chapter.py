@@ -13,10 +13,12 @@ from random import randint as rand
 
 def date(year):
     """ Not in use. Designed to display years in 40k format ex M42.360"""
+
+    ten_thousand = (year // 10000) * 10
     millenium = year % 1000
     while year > 1000:
         year -= 1000        
-    return "M{}.{}".format(millenium, year)
+    return "M{}.{}".format(ten_thousand + millenium, year)
 
 class cls_chapter:
     """ This is the work in progress analog to the cls_chapter found in
@@ -368,7 +370,7 @@ class cls_chapter:
         contestants[0].transcript.append("{}: Won the Tournament of Blades.".format(self.year))
 
         self.tournament_champions.append(
-            "{}|{}, XF={}, XP={}".format(self.year, contestants[0], contestants[0].xfactor, contestants[0].exp))
+            "{}|{} |(XF-{}, XP-{})".format(self.year, contestants[0], contestants[0].xfactor, contestants[0].exp))
 
 
 

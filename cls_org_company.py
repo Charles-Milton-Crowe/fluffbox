@@ -490,6 +490,8 @@ class cls_marine_generator:
             else:
                 marine = self.sp_input_company.marine_requested('trooper')
 
+                marine.KIA = 1
+
 
         elif type_dict[selected_type] == 6:
             marine = self.sp_input_company.marine_requested('jr_techmarine')
