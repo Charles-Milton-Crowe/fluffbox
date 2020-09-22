@@ -372,7 +372,7 @@ class cls_company:
 
         # Test members of the butchers bill for Honourability
         for marine in self.butchers_bill:
-            if self.ranknum_dict[marine.rank] == 1 and len(marine.badges.badges) > 3:
+            if self.ranknum_dict[marine.rank] == 1 and len(marine.badges.badges) > 2:
                 self.honoured.append(marine)
             elif self.ranknum_dict[marine.rank] == 2 and len(marine.badges.badges) > 3:
                 self.honoured.append(marine)
@@ -463,7 +463,13 @@ class cls_marine_generator:
         if type_dict[selected_type] == 1:
             fname = self.FNames[rand(0, len(self.FNames) - 1)]
             lname = self.LNames[rand(0, len(self.LNames) - 1)]
-            return cls_marine(selected_type, 40000, fname, lname)
+
+            marine = cls_marine(selected_type, 40000, fname, lname)
+
+            marine.transcript = [
+                "{:d}: Accepted into the chapter as a battle-brother of the scout companies.".format(self.year)]
+
+            return marine
 
         elif type_dict[selected_type] == 2:
             marine = self.sp_input_company.marine_requested('trooper')

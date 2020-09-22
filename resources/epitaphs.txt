@@ -91,7 +91,7 @@ killed in combat by#Necron Lord#Ork Warboss#Hive Tyrant#Demon Prince#Tau Command
 
 lost in#a deck decrompression event#a ship explosion
 lost in#a drop pod reentry failure#a thunderhawk crash
-lost in#an untimely extraction mission#Teleporter transmission failure
+lost in#an untimely extraction mission#teleporter transmission failure
 lost in#a rhino explosion#predator explosion#a landraider explosion
 lost in#an earthquake#a cyclonic storm#tsunami wave
 lost in#a close-range supernova explosion#a planetary explosion

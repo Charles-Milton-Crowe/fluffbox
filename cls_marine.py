@@ -53,7 +53,6 @@ class cls_marine:
 		self.birth = Year
 		self.death = 0
 		self.epitaph = ""
-		self.transcript = ["{:d}: Accepted into the chapter as a battle-brother of the scout companies.".format(Year)]
 		self.exp = self.settings.MARINE_START_EXP
 
 
