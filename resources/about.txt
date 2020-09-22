@@ -13,9 +13,9 @@ F8 - Closes the program.
 [Home/End]  - Goto the Start and Finish of selected roster.
 [PgUp/PgDn] - Moves up and down the roster by the viewable height.
 .
+This program places 2 files in the /records/ folder upon termination.
+    /records/Tournament_Recap - A Verbose record of each match held from round 6 on.
+    /records/Tournament_Champions     - A list of tourny winners.
+.
 (In Progress)
 [Space]    - Toggle the watchlist mode of the currently selected marine.
-.
-This program places 2 files in the /records/ folder upon termination.
-    /records/Tournament_of_Blades - A Verbose record of each match held from round 6 on.
-    /records/Tournament_Recap     - A list of tourny winners.

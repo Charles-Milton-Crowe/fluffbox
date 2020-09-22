@@ -314,7 +314,7 @@ def print_about(screen, menuinfo, chapter):
 
     screen.clear()
 
-    about = Load_Namefile("resources/fluff2_about.txt")
+    about = Load_Namefile("resources/about.txt")
 
     screen.clear()
     screen = top_ticker(screen, menuinfo, len(get_roster(chapter, menuinfo)))
