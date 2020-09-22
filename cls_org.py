@@ -54,6 +54,9 @@ class cls_chapter:
                 company.year += 10
                 company.set_company_numbers()
 
+        self.tournament_champions = []
+        self.tourney_recap = []
+
 
     def build_org_framework(self):
         """ This build the chapter org framework and returns it to the chapter __init__."""
@@ -237,6 +240,21 @@ class cls_chapter:
                 company.age_company()
 
     def tournament(self):
+
+        list = []
+        for dread in self.veteran_company.dreads:
+            marine = dread
+            list.append(marine)
+        for command in self.commands:
+            for company in command.companies:
+                for dread in company.dreads:
+                    marine = dread
+                    list.append(marine)
+
+        fateroll = rand(0, len(list)-1)
+        list[fateroll].transcript.append("{}: Hosted the opening ceremonies of the Tournament.".format(self.year))
+        list[fateroll].badges.add_badge("H", "Hosted Tournament", "White")
+
         contestants = []
 
         # 1 Veteran Captain
@@ -279,15 +297,10 @@ class cls_chapter:
         contestant = self.commands[0].companies[0].sargeants[4]
         contestants.append(contestant)
 
-        """contestant = self.commands[0].companies[0].captains[0]
-        contestants.append(contestant)
-        contestant = self.commands[0].companies[1].captains[0]
-        contestants.append(contestant)
-        contestant = self.commands[0].companies[2].captains[0]
-        contestants.append(contestant)"""
-
         a_bracket = []
         b_bracket = []
+
+        self.tourney_recap.append("{}: The Tournament has begun!".format(self.year))
 
         keepgoing = True
         cnt = 0
@@ -302,6 +315,11 @@ class cls_chapter:
                 contestants.pop(-1)
 
             contestants = []
+
+            if len(a_bracket) <= 4:
+                self.tourney_recap.append("\n")
+                self.tourney_recap.append("Round {} has begun!".format(cnt))
+                self.tourney_recap.append("═══════════════════════════════════════════════════════════")
 
             for contestant_a, contestant_b in zip(a_bracket, b_bracket):
                 a_results = contestant_a.xfactor + rand(1, contestant_a.xfactor) + rand(1, contestant_a.exp)
@@ -318,18 +336,39 @@ class cls_chapter:
                     else:
                         contestants.append(contestant_b)
 
+                if len(a_bracket) <= 4:
+                    self.tourney_recap.append("{:>28}    {:<28}".format(contestant_a.title,
+                                                                          contestant_b.title))
+                    self.tourney_recap.append("{:>28} vs {:<28}".format(contestant_a.name,
+                                                                          contestant_b.name))
+                    self.tourney_recap.append(
+                        "                   ({:>3},{:>3})    ({:>3},{:>3})".format(contestant_a.xfactor,
+                                                                                   contestant_a.exp,
+                                                                                   contestant_b.xfactor,
+                                                                                   contestant_b.exp))
+                    self.tourney_recap.append("-----------------------------------------------------------".format())
+
+                    results = " {} to {}".format(a_results, b_results)
+                    name = contestants[-1].title + " " + contestants[-1].name + " Won!" + results
+                    self.tourney_recap.append("{:^60}".format(name))
+                    self.tourney_recap.append("═══════════════════════════════════════════════════════════")
+
             a_bracket = []
             b_bracket = []
 
             if len(contestants) == 2:
                 for contestant in contestants:
                     contestant.transcript.append(
-                        "{}: Reached the final circle in the Tournament of Blades.".format(self.year))
+                        "{}: Defeated in the final circle of the Tournament of Blades.".format(self.year))
                     contestant.badges.add_badge("T", "Tournament of Blades Finalist", "White")
             if len(contestants) > 1:
                 keepgoing = True
 
         contestants[0].transcript.pop(-1)
-        contestants[0].transcript.append("{}: Won the tournament of blades.".format(self.year))
+        contestants[0].transcript.append("{}: Won the Tournament of Blades.".format(self.year))
+
+        self.tournament_champions.append(
+            "{}|{}, XF={}, XP={}".format(self.year, contestants[0], contestants[0].xfactor, contestants[0].exp))
+
 
 

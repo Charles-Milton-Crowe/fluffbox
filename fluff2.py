@@ -1,8 +1,10 @@
 
 
 from cls_org import cls_chapter
-
 from fluff2_menu import fluff_menu
+
+from os import path
+import os
 
 """ 
     Mr Duck,
@@ -37,15 +39,34 @@ from fluff2_menu import fluff_menu
     cause of why the roll_fate() bug exists."""
 
 
+def folders():
 
+    if path.exists('records/') is False:
+        os.mkdir('records')
+
+    if path.exists('resources/') is False:
+        print("Resources dont exit. FUBAR!")
 
 
 #############################################
 # Program Start #############################
 #############################################
 
+# Checks to make sure certain needed paths exist.
+folders()
+
 chapter = cls_chapter("Chapter Crusade Fleet")
 
 #chapter.display_commands()
 #input()
 fluff_menu(chapter)
+
+# Prints files upon end of program.
+with open("records/Tournament_Champions.txt", 'w', encoding="utf-8") as f:
+    for entry in chapter.tournament_champions:
+        f.write(entry + "\n")
+
+with open("records/Tournament_Recap.txt", 'w', encoding="utf-8") as f:
+    for entry in chapter.tourney_recap:
+        f.write(entry + "\n")
+    f.write("\n")
