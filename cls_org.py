@@ -169,6 +169,9 @@ class cls_chapter:
             for company in command.companies:
                 company.set_company_numbers()
 
+        if self.year % 100 == 0:
+            self.tournament()
+
     def pop_assets(self):
         """ This builds the initial Assets of the Chapter in the initialization sequence. Used once.
             Used only for fleets at present."""
@@ -232,3 +235,101 @@ class cls_chapter:
         for command in self.commands:
             for company in command.companies:
                 company.age_company()
+
+    def tournament(self):
+        contestants = []
+
+        # 1 Veteran Captain
+        contestant = self.veteran_company.captains[0]
+        contestants.append(contestant)
+
+        # 12 Captains
+        for command in self.commands:
+            for company in command.companies:
+                for captain in company.captains:
+                    contestant = captain
+                    contestants.append(contestant)
+
+        # 2 Veteran Lieutenants
+        for lieutenant in self.veteran_company.lieutenants:
+            contestant = lieutenant
+            contestants.append(contestant)
+
+        # 24 Lieutenants
+        for command in self.commands:
+            for company in command.companies:
+                for lieutenant in company.lieutenants:
+                    contestant = lieutenant
+                    contestants.append(contestant)
+
+        # 20 Veteran Sargeants
+        for sargeant in self.veteran_company.sargeants:
+            contestant = sargeant
+            contestants.append(contestant)
+
+
+        contestant = self.commands[0].companies[0].sargeants[0]
+        contestants.append(contestant)
+        contestant = self.commands[0].companies[0].sargeants[1]
+        contestants.append(contestant)
+        contestant = self.commands[0].companies[0].sargeants[2]
+        contestants.append(contestant)
+        contestant = self.commands[0].companies[0].sargeants[3]
+        contestants.append(contestant)
+        contestant = self.commands[0].companies[0].sargeants[4]
+        contestants.append(contestant)
+
+        """contestant = self.commands[0].companies[0].captains[0]
+        contestants.append(contestant)
+        contestant = self.commands[0].companies[1].captains[0]
+        contestants.append(contestant)
+        contestant = self.commands[0].companies[2].captains[0]
+        contestants.append(contestant)"""
+
+        a_bracket = []
+        b_bracket = []
+
+        keepgoing = True
+        cnt = 0
+        while keepgoing:
+            keepgoing = False
+            cnt += 1
+
+            for x in range(0, len(contestants) // 2):
+                a_bracket.append(contestants[0])
+                b_bracket.append(contestants[-1])
+                contestants.pop(0)
+                contestants.pop(-1)
+
+            contestants = []
+
+            for contestant_a, contestant_b in zip(a_bracket, b_bracket):
+                a_results = contestant_a.xfactor + rand(1, contestant_a.xfactor) + rand(1, contestant_a.exp)
+                b_results = contestant_b.xfactor + rand(1, contestant_b.xfactor) + rand(1, contestant_b.exp)
+
+                if a_results > b_results:
+                    contestants.append(contestant_a)
+                elif a_results < b_results:
+                    contestants.append(contestant_b)
+                else:
+                    fateroll = rand(1, 2)
+                    if fateroll == 1:
+                        contestants.append(contestant_a)
+                    else:
+                        contestants.append(contestant_b)
+
+            a_bracket = []
+            b_bracket = []
+
+            if len(contestants) == 2:
+                for contestant in contestants:
+                    contestant.transcript.append(
+                        "{}: Reached the final circle in the Tournament of Blades.".format(self.year))
+                    contestant.badges.add_badge("T", "Tournament of Blades Finalist", "White")
+            if len(contestants) > 1:
+                keepgoing = True
+
+        contestants[0].transcript.pop(-1)
+        contestants[0].transcript.append("{}: Won the tournament of blades.".format(self.year))
+
+
