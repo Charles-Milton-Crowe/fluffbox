@@ -341,8 +341,8 @@ class cls_chapter:
                         contestants.append(contestant_b)
 
                 if len(a_bracket) <= 4:
-                    self.tourney_recap.append("{:>28}    {:<28}".format(contestant_a.title,
-                                                                          contestant_b.title))
+                    self.tourney_recap.append("{:>28}    {:<28}".format(contestant_a.get_title(),
+                                                                          contestant_b.get_title()))
                     self.tourney_recap.append("{:>28} vs {:<28}".format(contestant_a.name,
                                                                           contestant_b.name))
                     self.tourney_recap.append(
